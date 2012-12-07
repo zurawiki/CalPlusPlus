@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20121207160000) do
   create_table "events", :force => true do |t|
     t.string   "title"
     t.string   "color"
+    t.decimal  "importance"
     t.boolean  "allDay"
     t.datetime "start"
     t.datetime "end"
