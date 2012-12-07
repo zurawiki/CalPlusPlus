@@ -94,7 +94,7 @@ $(function(){
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));            
             this.$('#allDay').val(this.model.get('allDay'));            
-            this.$('#importance').val(this.model.get('importance'));            
+            this.$('#importance').val(parseFloat(this.model.get('importance')));            
         },        
         save: function() {
             this.model.set({
