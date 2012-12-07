@@ -94,14 +94,18 @@ $(function(){
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));            
             this.$('#allDay').val(this.model.get('allDay'));            
-            this.$('#importance').val(parseFloat(this.model.get('importance')));            
+            this.$('#importance').val(parseFloat(this.model.get('importance'))); 
+            this.$('#start').val(this.model.get('start'));
+            this.$('#end').val(this.model.get('end'));
         },        
         save: function() {
             this.model.set({
                 'title': this.$('#title').val(),
                 'color': this.$('#color').val(),
                 'allDay': this.$('#allDay').attr('checked'),
-                'importance': this.$('#importance').val()
+                'importance': this.$('#importance').val(),
+                'start': this.$('#start').val(),
+                'end': this.$('#end').val()
             });
 
             if (this.model.isNew()) {
