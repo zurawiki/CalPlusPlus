@@ -57,6 +57,7 @@ $(function(){
             fcEvent.allDay = event.get('allDay');
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
+            fcEvent.importance = event.get('importance');
             this.el.fullCalendar('updateEvent', fcEvent);           
         },
         eventDropOrResize: function(fcEvent) {
@@ -93,13 +94,15 @@ $(function(){
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));            
             this.$('#allDay').val(this.model.get('allDay'));            
+            this.$('#importance').val(this.model.get('importance'));            
         },        
         save: function() {
             this.model.set({
                 'title': this.$('#title').val(),
                 'color': this.$('#color').val(),
-                'allDay': this.$('#allDay').attr('checked')}
-                );
+                'allDay': this.$('#allDay').attr('checked'),
+                'importance': this.$('#importance').val()
+            });
 
             if (this.model.isNew()) {
                 this.collection.create(this.model, {success: this.close});

@@ -7,14 +7,26 @@ class EventsController < ApplicationController
   
   def create
     render :json => 
-      Event.create!(:allDay => params[:allDay], :start => params[:start], :end => params[:end], :title => params[:title],
-        :color => params[:color])
+      Event.create!(
+        :allDay => params[:allDay],
+        :start => params[:start],
+        :end => params[:end],
+        :title => params[:title],
+        :color => params[:color],
+        :importance => params[:importance]
+      )
   end
   
   def update
     event = Event.find(params[:id])
-    event.update_attributes!(:allDay => params[:allDay], :start => params[:start], :end => params[:end], :title => params[:title],
-      :color => params[:color])
+    event.update_attributes!(
+      :allDay => params[:allDay],
+      :start => params[:start],
+      :end => params[:end],
+      :title => params[:title],
+      :color => params[:color],
+      :importance => params[:importance]
+    )
     render :json => event
   end  
   

@@ -3,6 +3,8 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string :title
       t.string :color
+      t.decimal :importance
+
       t.boolean :allDay
       t.datetime :start
       t.datetime :end
