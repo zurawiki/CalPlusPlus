@@ -49,6 +49,17 @@ $(function(){
             this.eventView.model = this.collection.get(fcEvent.id);
             this.eventView.render();
         },
+        eventRender: function(event, element) {
+                if (event.important < 0.33) {
+                    fcEvent.className = fc-zero;
+                }
+                else if (event.important < 0.66){
+                    fcEvent.className = fc-plus;
+                }
+                else {
+                    fcEvent.className = fc-plus;
+                }
+        },
         change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
             var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
@@ -58,6 +69,7 @@ $(function(){
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
             fcEvent.importance = event.get('importance');
+            fcEvent.className = event.get('className');
             this.el.fullCalendar('updateEvent', fcEvent);           
         },
         eventDropOrResize: function(fcEvent) {
