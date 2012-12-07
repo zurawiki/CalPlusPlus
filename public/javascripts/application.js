@@ -22,7 +22,7 @@ $(function(){
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: 'month,basicWeek,basicDay'
+                    right: 'month,agendaWeek,agendaDay'
                 },
                 selectable: true,
                 selectHelper: true,
