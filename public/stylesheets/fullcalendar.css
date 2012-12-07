@@ -1,14 +1,20 @@
 /*
- * FullCalendar v1.5.2 Stylesheet
+ * FullCalendar v1.5.4 Stylesheet
  *
  * Copyright (c) 2011 Adam Shaw
  * Dual licensed under the MIT and GPL licenses, located in
  * MIT-LICENSE.txt and GPL-LICENSE.txt respectively.
  *
- * Date: Sun Aug 21 22:06:09 2011 -0700
+ * Date: Tue Sep 4 23:38:33 2012 -0700
  *
  */
+#calendar {
+	width: 100% !important;
+}
 
+body {
+	margin: 0 0 0 0 !important;
+}
 
 .fc {
 	direction: ltr;
@@ -30,7 +36,7 @@ html .fc,
 	padding: 0;
 	vertical-align: top;
 	}
-
+	.hover-end{padding:0;margin:0;font-size:75%;text-align:center;position:absolute;bottom:0;width:100%;opacity:.8}
 
 
 /* Header
@@ -38,11 +44,20 @@ html .fc,
 
 .fc-header td {
 	white-space: nowrap;
+	color:#3F4253;
+	font-size: 1.2em;
+	padding: 1em 1em 0 1em;
+	font-family: Helvetica, Arial, sans-serif;
+	}
+.fc-header h2 {
+	font-size: 3em;
+	margin: 0 0 0 0;
 	}
 
 .fc-header-left {
 	width: 25%;
 	text-align: left;
+	border-bottom-left-radius: 5px;
 	}
 	
 .fc-header-center {
@@ -52,6 +67,8 @@ html .fc,
 .fc-header-right {
 	width: 25%;
 	text-align: right;
+		border-bottom-right-radius: 5px;
+
 	}
 	
 .fc-header-title {
@@ -110,10 +127,13 @@ html .fc,
 	
 .fc-content {
 	clear: both;
+	margin: 0 20px 8px 20px;
 	}
 	
 .fc-view {
 	width: 100%; /* needed for view switching (when view is absolute) */
+	background-color: #fff;
+	box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
 	overflow: hidden;
 	}
 	
@@ -122,13 +142,15 @@ html .fc,
 /* Cell Styles
 ------------------------------------------------------------------------*/
 
+
+
 .fc-widget-header,    /* <th>, usually */
 .fc-widget-content {  /* <td>, usually */
 	border: 1px solid #ccc;
 	}
 	
 .fc-state-highlight { /* <td> today cell */ /* TODO: add .fc-today to <th> */
-	background: #ffc;
+	background: #eaeff8;
 	}
 	
 .fc-cell-overlay { /* semi-transparent rectangle while dragging */
@@ -280,8 +302,8 @@ a.fc-event {
 	
 .fc-event-skin {
 	border-color: #36c;     /* default BORDER color */
-	background-color: #36c; /* default BACKGROUND color */
-	color: #fff;            /* default TEXT color */
+	/*background-color: #36c;*/ /* default BACKGROUND color */
+	/*color: #fff; */           /* default TEXT color */
 	}
 	
 .fc-event-inner {
@@ -295,6 +317,7 @@ a.fc-event {
 	
 .fc-event-time,
 .fc-event-title {
+	text-overflow: ellipsis !important;
 	padding: 0 1px;
 	}
 	
@@ -306,8 +329,21 @@ a.fc-event {
 	font-size: 300%;  /* */
 	line-height: 50%; /* */
 	}
-	
-	
+
+.fc-unimportant {
+	font-size: 0px;
+	display: block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    background: blue;
+    border: 2px; 
+    border-color: aqua;
+    border-radius:15px; 
+    -moz-border-radius:15px; 
+    -moz-transform:rotate(0deg); 
+}
+
 	
 /* Horizontal Events
 ------------------------------------------------------------------------*/
@@ -381,8 +417,7 @@ a.fc-event {
 	
 	
 /* Fake Rounded Corners SPECIFICALLY FOR EVENTS
------------------------------------------------------------------*/
-	
+-----------------------------------------------------------------*//*
 .fc-corner-left .fc-event-inner {
 	border-left-width: 1px;
 	}
@@ -399,7 +434,7 @@ a.fc-event {
 	border-bottom-width: 1px;
 	}
 	
-	
+*/	
 	
 /* Reusable Separate-border Table
 ------------------------------------------------------------*/
@@ -439,7 +474,14 @@ table.fc-border-separate {
 	
 .fc-grid .fc-day-number {
 	float: right;
-	padding: 0 2px;
+	padding: 0 3px;
+	margin-right: 2px;
+	border-left: 1px solid #808080;
+	border-right: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	border-bottom-left-radius: 5px;
+
+}
 	}
 	
 .fc-grid .fc-other-month .fc-day-number {
@@ -458,6 +500,7 @@ table.fc-border-separate {
 /* event styles */
 	
 .fc-grid .fc-event-time {
+
 	font-weight: bold;
 	}
 	
@@ -470,8 +513,7 @@ table.fc-border-separate {
 .fc-rtl .fc-grid .fc-event-time {
 	float: right;
 	}
-	
-	
+
 
 /* Agenda Week View, Agenda Day View
 ------------------------------------------------------------------------*/
@@ -552,6 +594,7 @@ table.fc-border-separate {
 .fc-agenda-slots tr.fc-minor th,
 .fc-agenda-slots tr.fc-minor td {
 	border-top-style: dotted;
+	opacity: .2;
 	}
 	
 .fc-agenda-slots tr.fc-minor th.ui-widget-header {
@@ -615,4 +658,43 @@ table.fc-border-separate {
 	_overflow: hidden;
 	}
 	
+/* Importance Styles */
+
+.fc-zero {
+	font-size: 0px;
+	display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: red;
+    border: 2px !important;
+    border-radius:8px !important; 
+    -moz-border-radius:8px !important;
+    -moz-transform:rotate(0deg) !important;
+}
 	
+.fc-plus {
+	color:red !important;
+	padding-left: 5px;
+	border-radius:10px !important; 
+    -moz-border-radius:10px !important;
+	border-width:1px;
+	padding-left: 5px; 
+	width:100%;
+	border-color:red;
+	background-color: white;
+	color: #000;
+}	
+
+.fc-plusplus {
+	padding-left: 5px;
+	border-radius:10px !important; 
+    -moz-border-radius:10px !important;
+    -moz-transform:rotate(0deg) !important;
+	border-color: red !important;
+	background-color: red;
+	color: #fff;
+}
+
+.fc-month-allday {
+
+}
