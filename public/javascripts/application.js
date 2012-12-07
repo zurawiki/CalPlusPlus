@@ -54,6 +54,9 @@ $(function(){
             var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
             fcEvent.title = event.get('title');
             fcEvent.color = event.get('color');
+            fcEvent.allDay = event.get('allDay');
+            fcEvent.start = event.get('start');
+            fcEvent.end = event.get('end');
             this.el.fullCalendar('updateEvent', fcEvent);           
         },
         eventDropOrResize: function(fcEvent) {
@@ -89,10 +92,15 @@ $(function(){
         open: function() {
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));            
+            this.$('#allDay').val(this.model.get('allDay'));            
         },        
         save: function() {
-            this.model.set({'title': this.$('#title').val(), 'color': this.$('#color').val()});
-            
+            this.model.set({
+                'title': this.$('#title').val(),
+                'color': this.$('#color').val(),
+                'allDay': this.$('#allDay').attr('checked')}
+                );
+
             if (this.model.isNew()) {
                 this.collection.create(this.model, {success: this.close});
             } else {
