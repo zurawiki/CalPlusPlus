@@ -64,6 +64,33 @@ $(function () {
             else {
                 element.addClass( 'fc-plusplus');
             }
+            var time = event.start.format("longTime");
+                element.qtip({
+                    hide: {
+                        when: 'mouseout mousedown mouseup'
+                    },
+                    show: {
+                        delay: 5,
+                        when: 'mouseover'
+                    },
+                    content: {
+                        text: event.title + " at " +time
+                    },
+                    style: {
+                        padding: 5,
+                        background: '#424242',
+                        color: 'white',
+                        textAlign: 'center',
+                        border: {
+                        width: 7,
+                        radius: 5,
+                        color: '#424242'
+                    }
+                                    },
+                    position: {
+                       adjust: { screen: true },
+                    }
+                });
         },
         change:function (event) {
             // Look up the underlying event in the calendar and update its details from the model
