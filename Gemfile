@@ -1,31 +1,30 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 3.2'
+gem 'sqlite3', :group => 'development'
+gem 'system_timer'
+#gem 'pg', :group => 'production'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :assets do
+  gem 'sass-rails', '~> 3.2'
+  gem 'coffee-rails', '~> 3.2'
+  gem 'uglifier', '>= 1.0'
+end
 
-gem 'sqlite3'
+# Core dependencies, pulled from master
+gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
+gem 'omniauth-oauth2', :git => 'git://github.com/intridea/omniauth-oauth2.git'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# Under active development
+#gem 'omniauth-tumblr', :git => 'git://github.com/jamiew/omniauth-tumblr.git'
+#gem 'omniauth-tumblr', :path => '~/dev/omniauth-strategies/omniauth-tumblr'
+#gem 'omniauth-youtube', :git => 'git://github.com/jamiew/omniauth-youtube.git'
+#gem 'omniauth-youtube', :path => '~/dev/omniauth-strategies/omniauth-youtube'
 
-# Deploy with Capistrano
-# gem 'capistrano'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+# For testing/comparison
+#gem 'omniauth-facebook'
+#gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+#gem 'omniauth-twitter'
+#gem 'omniauth-vimeo'
