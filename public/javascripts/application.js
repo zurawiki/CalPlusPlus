@@ -52,27 +52,28 @@ $(function(){
         },
         eventRender: function(event, element) {
             if (event.importance < 0.33) {
-                event.className = 'fc-zero';
-                event.backgroundColor = event.color; 
+                element.addClass( 'fc-zero');
             }
 
             else if (event.importance < 0.66){
-                event.className = 'fc-plus';
+                element.addClass( 'fc-plus');
+                element.css("border-color",event.color);
+                element.css("color",event.color);
+                element.css("background-color", "transparent");
             }
-            else if (event.importance >=0.66){
-                event.className = 'fc-plusplus';
+            else {
+                element.addClass( 'fc-plusplus');
             }
         },
         change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
             var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
             fcEvent.title = event.get('title');
-            /*fcEvent.color = event.get('color');*/
+            fcEvent.color = event.get('color');
             fcEvent.allDay = event.get('allDay');
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
             fcEvent.importance = event.get('importance');
-            fcEvent.className = event.get('className');
             this.el.fullCalendar('updateEvent', fcEvent);           
         },
         eventDropOrResize: function(fcEvent) {
@@ -107,7 +108,7 @@ $(function(){
         },        
         open: function() {
             this.$('#title').val(this.model.get('title'));
-            this.$('#color').val(this.model.get('color'));            
+            this.$('#color').val(this.model.get('color'));          
             this.$('#allDay').val(this.model.get('allDay'));            
             this.$('#importance').val(parseFloat(this.model.get('importance'))); 
             this.$('#start').val(this.model.get('start'));
@@ -122,7 +123,6 @@ $(function(){
                 'start': this.$('#start').val(),
                 'end': this.$('#end').val()
             });
-
             if (this.model.isNew()) {
                 this.collection.create(this.model, {success: this.close});
             } else {
