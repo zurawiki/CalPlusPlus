@@ -14,6 +14,11 @@
 
 body {
 	margin: 0 0 0 0 !important;
+	/*background-image:url('http://media.thecrimson.com/photos/2011/09/07/002115_1256089_630x418.jpg');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;*/
 }
 
 .fc {
@@ -132,8 +137,7 @@ html .fc,
 	
 .fc-view {
 	width: 100%; /* needed for view switching (when view is absolute) */
-	background-color: #fff;
-	box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+	/*background-color: rgba(0,0,0,0.5);  *//* 50% transparent */	/*box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;*/
 	overflow: hidden;
 	}
 	
@@ -323,6 +327,7 @@ a.fc-event {
 	
 .fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
 	display: block;
+	width: 0px;
 	position: absolute;
 	z-index: 99999;
 	overflow: hidden; /* hacky spaces (IE6/7) */
@@ -372,6 +377,7 @@ a.fc-event {
 	}
 	
 .fc-event-hori .ui-resizable-handle {
+	width: 0px !important;
 	_padding-bottom: 14px; /* IE6 had 0 height */
 	}
 	
@@ -473,6 +479,7 @@ table.fc-border-separate {
 	}
 	
 .fc-grid .fc-day-number {
+	color: #fff;
 	float: right;
 	padding: 0 3px;
 	margin-right: 2px;
@@ -665,7 +672,7 @@ table.fc-border-separate {
 	display: inline-block !important;
     width: 16px !important;
     height: 16px !important;
-    background: red;
+    /*background: red;*/
     border: 2px !important;
     border-radius:8px !important; 
     -moz-border-radius:8px !important;
@@ -680,9 +687,9 @@ table.fc-border-separate {
 	border-width:1px;
 	padding-left: 5px; 
 	width:100%;
-	border-color:red;
+	/*border-color:red;
 	background-color: white;
-	color: #000;
+	color: #000;*/
 }	
 
 .fc-plusplus {
@@ -690,9 +697,9 @@ table.fc-border-separate {
 	border-radius:10px !important; 
     -moz-border-radius:10px !important;
     -moz-transform:rotate(0deg) !important;
-	border-color: red !important;
+	/*border-color: red !important;
 	background-color: red;
-	color: #fff;
+	color: #fff;*/
 }
 
 .fc-month-allday {

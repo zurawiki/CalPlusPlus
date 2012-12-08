@@ -30,6 +30,7 @@ $(function(){
                 ignoreTimezone: false,                
                 select: this.select,
                 eventClick: this.eventClick,
+                eventRender: this.eventRender,
                 eventDrop: this.eventDropOrResize,        
                 eventResize: this.eventDropOrResize
             });
@@ -50,21 +51,23 @@ $(function(){
             this.eventView.render();
         },
         eventRender: function(event, element) {
-                if (event.important < 0.33) {
-                    fcEvent.className = fc-zero;
-                }
-                else if (event.important < 0.66){
-                    fcEvent.className = fc-plus;
-                }
-                else {
-                    fcEvent.className = fc-plus;
-                }
+            if (event.importance < 0.33) {
+                event.className = 'fc-zero';
+                event.backgroundColor = event.color; 
+            }
+
+            else if (event.importance < 0.66){
+                event.className = 'fc-plus';
+            }
+            else if (event.importance >=0.66){
+                event.className = 'fc-plusplus';
+            }
         },
         change: function(event) {
             // Look up the underlying event in the calendar and update its details from the model
             var fcEvent = this.el.fullCalendar('clientEvents', event.get('id'))[0];
             fcEvent.title = event.get('title');
-            fcEvent.color = event.get('color');
+            /*fcEvent.color = event.get('color');*/
             fcEvent.allDay = event.get('allDay');
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
