@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :authorizations
+  has_many :events, :inverse_of => :user
   validates :name, :email, :presence => true
 
   def add_provider(auth_hash)
