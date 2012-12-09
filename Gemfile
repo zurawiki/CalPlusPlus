@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2'
 gem 'sqlite3', :group => 'development'
-#gem 'system_timer', :group => 'development'
-#gem 'pg', :group => 'production'
+gem 'system_timer', :group => 'development'
+gem 'pg', :group => 'production'
 
 group :assets do
   gem 'sass-rails', '~> 3.2'
@@ -30,3 +30,4 @@ gem 'omniauth-google-oauth2'
 #gem 'omniauth-vimeo'
 gem 'nifty-generators'
 gem 'google-api-client', :require => 'google/api_client'
+gem 'thin'

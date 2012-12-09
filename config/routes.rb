@@ -1,8 +1,6 @@
 CalPlusPlus::Application.routes.draw do
 
-  get "main/welcome"
-
-  get "main/home"
+  get "home" => "main#home"
 
   root :to => 'main#welcome'
 

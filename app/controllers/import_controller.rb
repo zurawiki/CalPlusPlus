@@ -46,7 +46,8 @@ class ImportController < ApplicationController
               :end => event.end.dateTime,
               :title => event.summary,
               :color => color,
-              :importance => 0.5
+              :importance => 0.5,
+              :user_id => @user.id
           )
         rescue
           logger.warn "Found an all day event"
@@ -56,7 +57,8 @@ class ImportController < ApplicationController
               :end => (Date.parse(event.end.date)-1),
               :title => event.summary,
               :color => color,
-              :importance => 0
+              :importance => 0,
+              :user_id => @user.id
           )
         end
       end
