@@ -11,7 +11,7 @@ CalPlusPlus::Application.routes.draw do
   match '/auth/:provider/callback' => 'sessions#create'
   match '/auth/failure' => 'sessions#failure'
 
-  match '/login' => '/auth/google_oauth2'
+  match '/login' => 'main#welcome'
   match '/logout' => 'sessions#destroy', :as => :logout
 
   resources :events
