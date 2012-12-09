@@ -1,6 +1,9 @@
 # Note that to avoid bugs and security issues, we manually specify the parameters we want to save &
 # update, rather than just passing them all in.
 class EventsController < ApplicationController
+
+  before
+
   def index
     render :json => Event.all
   end

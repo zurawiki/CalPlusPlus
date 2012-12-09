@@ -13,18 +13,18 @@
 ActiveRecord::Schema.define(:version => 20121208185641) do
 
   create_table "authorizations", :force => true do |t|
-    t.string "provider"
-    t.string "uid"
-    t.integer "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "events", :force => true do |t|
-    t.string "title"
-    t.string "color"
-    t.decimal "importance"
-    t.boolean "allDay"
+    t.string   "title"
+    t.string   "color"
+    t.decimal  "importance"
+    t.boolean  "allDay"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at", :null => false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20121208185641) do
   end
 
   create_table "users", :force => true do |t|
-    t.string "name"
-    t.string "email"
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

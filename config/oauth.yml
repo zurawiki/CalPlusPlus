@@ -1,6 +1,0 @@
-# Warning: these are all registered to sandbox applications setup by @jamiew
-# Don't use in production! For testing/verification only and subject to change
-
-google: # also used by the YouTube provider
-  key: "746331387491.apps.googleusercontent.com"
-  secret: "k_IixsOIqCpIXUb3smTjz-9H"

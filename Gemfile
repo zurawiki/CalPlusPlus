@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2'
 gem 'sqlite3', :group => 'development'
-gem 'system_timer'
+#gem 'system_timer', :group => 'development'
 #gem 'pg', :group => 'production'
 
 group :assets do
@@ -12,7 +12,7 @@ group :assets do
 end
 
 # Core dependencies, pulled from master
-gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
+gem 'omniauth', '>= 1.1.0', :git => 'git://github.com/intridea/omniauth.git'
 gem 'omniauth-oauth2', :git => 'git://github.com/intridea/omniauth-oauth2.git'
 
 # Under active development
@@ -28,3 +28,5 @@ gem 'omniauth-oauth2', :git => 'git://github.com/intridea/omniauth-oauth2.git'
 gem 'omniauth-google-oauth2'
 #gem 'omniauth-twitter'
 #gem 'omniauth-vimeo'
+gem 'nifty-generators'
+gem 'google-api-client', :require => 'google/api_client'

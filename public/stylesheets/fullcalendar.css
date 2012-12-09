@@ -30,7 +30,8 @@ float: right;
 	position: fixed;
 	background-color: rgba(0,0,0,.5);
 	width: 15% !important;
-	height: 100%
+	height: 100%;
+
 }
 
 body {
