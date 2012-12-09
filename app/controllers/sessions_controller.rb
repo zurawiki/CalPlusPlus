@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if session[:user_id]
       # our user is logged in
       logger.debug "USER VALIDATED! GOING TO CALENDAR!"
-      redirect_to "/cal.html"
+      redirect_to "/home"
     else
       logger.debug "params: #{params.inspect}"
       services = ['google_oauth2']
