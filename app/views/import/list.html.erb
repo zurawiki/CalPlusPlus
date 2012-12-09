@@ -1,19 +1,24 @@
 <div class="jumbotron masthead">
 
   <div class="container">
-    <h1> <img src="../../../images/logo.png" alt="cal++ logo" width='150px';> </h1>
+    
     <p>Select a Calendar to Import</p>
 </div>
 </div>
 <table>
   <thead>
   <tr>
+  	<th>Color</th>
     <th>Calendar Name</th>
   </tr>
   </thead>
   <tbody>
   <% @result.data.items.each do |cal| %>
       <tr>
+      	<td>
+      		<table id="colorsquare"
+				style="background: <%= cal.backgroundColor %>">
+			</table>
         <td><%= cal.summary %></td>
 		<td>
           <form id="googlecal" name="<%= cal.etag %>" action="/import/calendar" method="get">
@@ -25,4 +30,5 @@
   <% end %>
   </tbody>
 </table>
+
 
