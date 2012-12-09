@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "App_Name" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "App_Name" %>">
-  <%= stylesheet_link_tag "bootstrap", "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "bootstrap", "application", "jquery-ui-1.8.13.custom", "jquery.qtip",  "fullcalendar", "bootstrap-responsive",   :media => "all" %>
+  <%= javascript_include_tag  "jquery-1.5.1.min", "jquery-ui-1.8.13.custom.min", "fullcalendar.min", "underscore", "backbone" ,"jquery.qtip-1.0.0-rc3", "datetime", "date", "application"%>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>
@@ -18,14 +18,10 @@
   </nav>
 </header>
 <div id="main" role="main">
-  <div class="container">
-    <div class="content">
-      <div class="row">
-        <div class="span12">
-          <%= render 'layouts/messages' %>
+          <div class='container-fluid'>
+            <div class='row-fluid'>
+            <%= render 'layouts/messages' %>
           <%= yield %>
-        </div>
-      </div>
       <footer>
       </footer>
     </div>

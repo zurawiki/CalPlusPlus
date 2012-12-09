@@ -36,7 +36,7 @@ float: right;
 
 body {
 	margin: 0 0 0 0 !important;
-	background-image:url('/noisy_grid.png');
+	background-image:url('/images/noisy_grid.png');
 	background-repeat: repeat;
 }
 
@@ -161,6 +161,7 @@ html .fc,
 ------------------------------------------------------------------------*/
 
 .fc-content {
+	width:100% !important;
     clear: both;
     margin: 0 20px 8px 20px;
 }

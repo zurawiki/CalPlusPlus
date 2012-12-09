@@ -1,2 +1,54 @@
-<h1>Main#home</h1>
-<p>Find me in app/views/main/home.html.erb</p>
+
+    <div class='span2' id='sidebar'>
+        <img src="/images/logo.png" alt="cal++ logo" width='300px';>
+        <span>Welcome <%= @user.name %>!</span>
+    </br>
+    </br>
+        <a href="/import" class="btn btn-primary">Import from Google</a>
+        </br>
+        </br>
+        <p>Here at Cal++, we believe calendars should be easy on the eyes and minds. Make your events Normal, Plus or PlusPlus and relish the beauty of your new, simplified calendar. </p>
+        <p style="text-align:center; font-weight: bold;">Cal++: Calendars Done. Right. </p>
+        <div id='sidefoot'><p style="text-align:center;">Created by Zurawicki, Scharfstein and Ho</br>&#169 2012  </p></div>
+    </div>
+    <body>
+            <div id='calendar' class='span10'></div>        
+            
+            <div id='eventDialog' class='dialog ui-helper-hidden'>
+                <form>
+                    <div>
+                        <label>Title:</label>
+                        <input id='title' class="field" type="text"></input>
+                    </div>
+                    <div>
+                        <label>Color:</label>
+                        <input id='color' class="field" type="color"></input>
+                    </div>
+                    <div>
+                        <label>All Day:</label>
+                        <input id='allDay' class="field" type="checkbox"></input>
+                    </div>
+                </br>
+                    <div>
+                        <label>Importance:</label>
+                        <select class="field" id="importance">
+                            <option value="0" >Normal</option>
+                            <option value="0.5">Plus</option>
+                            <option value="1" >PlusPlus</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Start:</label>
+                        <input id='start' class="field" type="text"></input>
+                    </div>
+                    <div>
+                        <label>End:</label>
+                        <input id='end' class="field" type="text"></input>
+                    </div>
+
+        
+                </form>
+            </div>   
+    </body>
+    <footer></footer>
+</html>
