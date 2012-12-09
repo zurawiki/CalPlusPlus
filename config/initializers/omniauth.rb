@@ -1,13 +1,12 @@
 OmniAuth.config.logger = Rails.logger
 
-SERVICES = YAML.load(File.open("#{::Rails.root}/config/oauth.yml").read)
-
 Rails.application.config.middleware.use OmniAuth::Builder do
-
   provider :developer unless Rails.env.production?
 
-  # Note: access_type can be 'online' (for just authenticating) or 'offline' (for using services)
-  # approval_prompt should be a blank string or else it defaults to 'force', which requires re-authenticating on each login/usage
-  provider :google_oauth2, SERVICES['google']['key'], SERVICES['google']['secret'], {:access_type => 'online', :approval_prompt => ''} # if SERVICES['google']
+  provider :google_oauth2, "860116077399.apps.googleusercontent.com", "AKqrSHqoLzXTAwJPJg4z-5U0", {
+      :access_type => 'offline',
+      :scope => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar',
+      :redirect_uri => 'http://localhost:3000/auth/google_oauth2/callback'
+  }
 
 end
