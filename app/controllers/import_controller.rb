@@ -46,7 +46,8 @@ class ImportController < ApplicationController
               :end => event.end.dateTime,
               :title => event.summary,
               :color => color,
-              :importance => 0.5,
+              :importance => 0,
+              :autoImportance => true,
               :user_id => @user.id
           )
         rescue
@@ -58,6 +59,7 @@ class ImportController < ApplicationController
               :title => event.summary,
               :color => color,
               :importance => 0,
+              :autoImportance => true,
               :user_id => @user.id
           )
         end

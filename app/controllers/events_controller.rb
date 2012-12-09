@@ -17,6 +17,7 @@ class EventsController < ApplicationController
                    :title => params[:title],
                    :color => params[:color],
                    :importance => params[:importance],
+                   :autoImportance => params[:autoImportance],
                    :user_id => params[:user_id]
                )
   end
@@ -30,6 +31,7 @@ class EventsController < ApplicationController
         :title => params[:title],
         :color => params[:color],
         :importance => params[:importance],
+        :autoImportance => params[:autoImportance],
         :user_id => params[:user_id]
     )
     render :json => event
