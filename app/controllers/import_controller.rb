@@ -31,7 +31,7 @@ class ImportController < ApplicationController
       service = client.discovered_api('calendar', 'v3')
       @result = client.execute(
           :api_method => service.events.list,
-          :parameters => {'calendarId' => calendar},
+          :parameters => {'calendarId' => calendar, 'singleEvents' => 'true'},
           :headers => {'Content-Type' => 'application/json'}
       )
 
