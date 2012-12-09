@@ -30,7 +30,12 @@ float: right;
 	position: fixed;
 	background-color: rgba(0,0,0,.5);
 	width: 15% !important;
-	height: 100%
+	height: 100%;
+-moz-border-radius-topleft: 10px;
+-moz-border-radius-topright: 20px;
+-moz-border-radius-bottomright: 30px;
+-moz-border-radius-bottomleft: 0;
+ 
 }
 
 body {
