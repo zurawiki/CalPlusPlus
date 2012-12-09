@@ -20,3 +20,17 @@ body {
     width: 900px;
     margin: 0 auto;
 }
+
+#enddate, #startdate, #endtime, #startime {
+	height:30px;
+}
+
+.field {
+
+	font-size:100px;
+}
+
+#importance {
+	width:100px;
+	margin-right:70px;
+}
