@@ -1,0 +1,35 @@
+Usage Documentation
+
+User Login
+We use a Google account for Login. On the welcome page, clicking get started will take the user to the sign in page for Google sign in and authentication.
+
+Calendar Import
+Importing calendars is also done through the user’s Google account. On the left hand side of the calendar, click the button that says “Import from Google”
+
+Adding Events
+To add an event to the calendar, click the day on which you want the event added. A form will pop-up prompting the user for relevant information.
+
+Importance
+The way we designed our calendar, the user is able to classify an event into 3 categories. Normal (not important), Plus (somewhat important), and PlusPlus (very important). The user does this manually on the front end when they are adding events, but the back-end will also have an algorithm that does this through identifying key words.  
+
+Changing Dates
+To move an event to a different date, simply drag the event icon from one date to another.
+
+Event Details
+To reveal more details about an event, hover over the event icon and a popup will show more information such as the event name, time, etc.
+
+Importance Denotation
+Normal events are denoted by a simple circle on the calendar
+Plus events are denoted by an outline around the event.
+PlusPlus events are denoted by a colored outline around the event.
+
+Installing Rails (on a UNIX based system)
+1.	Launch terminal on your computer
+2.	Enter the following commands
+	a.	sudo gem update –system
+	b.	sudo gem install rubygems-update
+	c.	sudo update_rubygems
+3.	Within terminal, enter the directory in which all the application files are stored
+4.	Type in “sudo gem install rails”
+5.	Type in “rails server” and follow instructions given by the terminal
+
