@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2'
-gem 'sqlite3'
+gem 'sqlite3', :group => 'development'
 #gem 'system_timer', :group => 'development'
 #gem 'pg', :group => 'production'
 

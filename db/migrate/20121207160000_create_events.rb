@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :title
       t.string :color
       t.decimal :importance
+      t.integer :user_id
 
       t.boolean :allDay
       t.datetime :start
