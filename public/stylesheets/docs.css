@@ -10,9 +10,25 @@
 /* Body and structure
 -------------------------------------------------- */
 
+#googlecal {
+
+  padding-left:40px;
+  padding-top:10px;
+}
+
+table {
+
+  text-align:center;
+  margin: auto;
+  font-family: 'Helvetica Neue';
+  font-size: 30px;
+  font-weight: 150;
+  line-height: 1.25;
+  color: black;
+}
+
 body {
   position: relative;
-  padding-top: 80px;
   background-image:url('../../assets/img/noisy_grid.png');
   background-repeat: repeat;
 

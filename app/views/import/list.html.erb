@@ -1,22 +1,28 @@
+<div class="jumbotron masthead">
+
+  <div class="container">
+    <h1> <img src="../../../images/logo.png" alt="cal++ logo" width='150px';> </h1>
+    <p>Select a Calendar to Import</p>
+</div>
+</div>
 <table>
   <thead>
   <tr>
-    <th>Name</th>
-    <th>ID</th>
+    <th>Calendar Name</th>
   </tr>
   </thead>
   <tbody>
   <% @result.data.items.each do |cal| %>
       <tr>
         <td><%= cal.summary %></td>
-        <td><%= cal.id %>
-          <form name="<%= cal.etag %>" action="/import/calendar" method="get">
+		<td>
+          <form id="googlecal" name="<%= cal.etag %>" action="/import/calendar" method="get">
             <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
-            <input type="submit" value="SUBMIT"/>
+            <input  type="submit" class="btn btn-primary btn-large" value="IMPORT"/>
           </form>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
-<pre><%= @result.data.to_yaml %></pre>
+
