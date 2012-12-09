@@ -172,4 +172,7 @@ $(function () {
     var events = new Events();
     new EventsView({el:$("#calendar"), collection:events}).render();
     events.fetch();
+    
+$('#start').datetimepicker();
+$('#end').datetimepicker();
 });
