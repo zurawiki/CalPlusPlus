@@ -136,6 +136,10 @@ $(function () {
         open:function () {
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));
+            if (this.model.get('color') == "#000000")
+            {
+                this.$('#color').val('#'+Math.floor(Math.random()*16777215).toString(16));
+            }
             this.$('#allDay').val(this.model.get('allDay'));
             this.$('#importance').val(parseFloat(this.model.get('importance')));
             this.$('#start').val(this.model.get('start'));

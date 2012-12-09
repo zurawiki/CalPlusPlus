@@ -31,7 +31,10 @@ float: right;
 	background-color: rgba(0,0,0,.5);
 	width: 15% !important;
 	height: 100%;
+}
 
+#sidebar li a{
+	color:white;
 }
 
 body {
