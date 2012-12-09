@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :authenticate, :only => [:new, :create, :failure]
+  skip_before_filter :authenticate
 
   def new
     if session[:user_id]

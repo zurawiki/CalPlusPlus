@@ -35,6 +35,7 @@ class ImportController < ApplicationController
           :headers => {'Content-Type' => 'application/json'}
       )
 
+      logger.error y @result.data
       events = @result.data.items
       color = "#"+ ("%06x" % (rand * 0xffffff))
 

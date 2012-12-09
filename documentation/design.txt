@@ -1,6 +1,6 @@
 On the back-end side, we initially decided to use Node.js as our database to store various inputs such as events, calendars, and users. We also used the Google Calendar API in order to import calendars and events from Google Calendar into our node.js database. We decided to use Node.js since we could use JavaScript on both the front and back end which made our application very compatible. Node.js is also asynchronous which means it is very good for writing high performance applications.
 
-We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generate HTML.
+We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generated HTML.
 
 After the first couple weeks, we realized that because of lack of documentation of node.js we were having difficulty successfully implementing our objectives. We noticed that a similar implementation was already done in Ruby on Rails. Since most of the underlying structure between this new Rails backend and our original Node backend was very similar, we were able to quickly switch. Now we use Rails to handle our events database, and ERB to generate HTML templates, which is the Ruby version of EJS.
 

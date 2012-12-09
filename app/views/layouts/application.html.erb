@@ -5,7 +5,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "App_Name" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "App_Name" %>">
   <%= stylesheet_link_tag "docs", "bootstrap", "application", "jquery-ui-1.8.13.custom", "jquery.qtip",  "fullcalendar", "bootstrap-responsive",   :media => "all" %>
-  <%= javascript_include_tag  "jquery-1.5.1.min", "jquery-ui-1.8.13.custom.min", "fullcalendar.min", "underscore", "backbone" ,"jquery.qtip-1.0.0-rc3", "datetime", "date", "application"%>
+  <%= javascript_include_tag   "http://code.jquery.com/jquery-1.6.3.js",  "jquery-ui-1.8.13.custom.min", "fullcalendar.min", "underscore", "backbone" ,"jquery.qtip-1.0.0-rc3", "datetime", "date",  "date_time", "application"%>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
 </head>

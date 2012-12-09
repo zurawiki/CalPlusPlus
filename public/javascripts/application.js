@@ -152,8 +152,8 @@ $(function () {
                 'color':this.$('#color').val(),
                 'allDay':this.$('#allDay').attr('checked'),
                 'importance':this.$('#importance').val(),
-                'start':this.$('#start').val(),
-                'end':this.$('#end').val(),
+                'start':new Date(this.$('#start').val()).toString(),
+                'end':new Date(this.$('#end').val()).toString(),
                 'autoImportance':this.$('#autoImportance').attr('checked'),
                 'user_id':this.$('#user_id').val()
             });
@@ -174,4 +174,7 @@ $(function () {
     var events = new Events();
     new EventsView({el:$("#calendar"), collection:events}).render();
     events.fetch();
+    
+$('#start').datetimepicker();
+$('#end').datetimepicker();
 });
