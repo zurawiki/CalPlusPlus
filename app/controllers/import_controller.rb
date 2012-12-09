@@ -64,7 +64,7 @@ class ImportController < ApplicationController
           )
         end
       end
-      render
+      redirect_to root_url, :notice => "Successfully imported Calendar: "+@result.data.summary
 
     else
       redirect_to root_url, :notice => "You must be logged in to import calendars"
