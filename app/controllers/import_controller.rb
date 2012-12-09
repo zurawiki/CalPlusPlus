@@ -1,4 +1,5 @@
 class ImportController < ApplicationController
+
   def list
     if session[:user_id]
 

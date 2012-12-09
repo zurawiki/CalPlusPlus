@@ -10,12 +10,7 @@
   <% @result.data.items.each do |cal| %>
       <tr>
         <td><%= cal.summary %></td>
-        <td><%= cal.id %>
-          <form name="<%= cal.etag %>" action="/import/calendar" method="get">
-            <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
-            <input type="submit" value="SUBMIT"/>
-          </form>
-        </td>
+        <td><%= cal.id %></td>
       </tr>
   <% end %>
   </tbody>
