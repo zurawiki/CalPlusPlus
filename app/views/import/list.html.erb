@@ -1,0 +1,22 @@
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @result.data.items.each do |cal| %>
+      <tr>
+        <td><%= cal.summary %></td>
+        <td><%= cal.id %>
+          <form name="<%= cal.etag %>" action="/import/calendar" method="get">
+            <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
+            <input type="submit" value="SUBMIT"/>
+          </form>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<pre><%= @result.data.to_yaml %></pre>

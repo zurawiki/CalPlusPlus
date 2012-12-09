@@ -13,5 +13,8 @@ CalPlusPlus::Application.routes.draw do
   match '/logout' => 'sessions#destroy', :as => :logout
 
   resources :events
+  match '/import' => 'import#list'
+  get '/import/list' => 'import#list'
+  get '/import/calendar' => 'import#calendar'
 
 end
