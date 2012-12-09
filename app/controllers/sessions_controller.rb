@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :authenticate, :only => [:new, :create, :failure]
+
   def new
     if session[:user_id]
       # our user is logged in
@@ -14,15 +17,10 @@ class SessionsController < ApplicationController
 
   def create
     @auth = request.env['omniauth.auth']
-    if session[:user_id]
-      # Means our user is signed in. Add the authorization to the user
-      User.find(session[:user_id]).add_provider(@auth)
-    else
-      # Log him in or sign him up
-      auth = Authorization.find_or_create(@auth)
-      # Create the session
-      session[:user_id] = auth.user.id
-    end
+    # Log him in or sign him up
+    auth = Authorization.find_or_create(@auth)
+    # Create the session
+    session[:user_id] = auth.user.id
     session[:user_token] = @auth["credentials"]["token"]
   end
 

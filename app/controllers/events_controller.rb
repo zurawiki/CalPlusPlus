@@ -2,8 +2,6 @@
 # update, rather than just passing them all in.
 class EventsController < ApplicationController
 
-  before
-
   def index
     render :json => Event.all
   end
