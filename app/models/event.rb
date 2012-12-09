@@ -3,12 +3,12 @@ class Event < ActiveRecord::Base
   before_save :calculate_importance
 
   belongs_to :user, :inverse_of => :events
-  validates :title, :start, :end, :importance, :autoImportance, :user_id, :presence => true
+  validates :title, :start, :end, :importance, :user_id, :presence => true
 
   def calculate_importance
     if self.autoImportance
 
-      good_list = ["test", "exam", "final", "project", "due", "important", "essay", "proctor", "game", "match", "tournament", "recital", "concert"]
+      good_list = ["test", "meeting", "exam", "final", "project", "due", "important", "essay", "proctor", "game", "match", "tournament", "recital", "concert", "interview"]
       bad_list = ["practice", "class", "lecture", "section", "rehearsal", "seminar"]
 
       good = {}

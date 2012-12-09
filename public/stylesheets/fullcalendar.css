@@ -23,8 +23,7 @@
 	background-size: 100%;
 }
 #sidefoot {
-	position: absolute;
-	bottom: 2px;
+	position: center;
 }
 
 .nav {
@@ -40,6 +39,9 @@
 	width: 15% !important;
 	height: 100%;
     margin-right:0 !important;
+}
+#sidebar ul {
+    padding: 15px;
 }
 
 #sidebar li a{
@@ -142,7 +144,7 @@ html .fc,
 /* buttons edges butting together */
 
 .fc-header .fc-button {
-    margin-right: -1px;
+    margin-right: 0px;
 }
 
 .fc-header .fc-corner-right {
@@ -436,7 +438,7 @@ a.fc-event {
 
 .fc-corner-left .fc-button-inner,
 .fc-corner-left .fc-event-inner {
-    margin-left: -1px;
+    margin-left: 1px;
 }
 
 .fc-corner-right {
