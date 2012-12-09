@@ -1,5 +1,9 @@
 CalPlusPlus::Application.routes.draw do
 
+  get "main/welcome"
+
+  get "main/home"
+
   root :to => 'sessions#new'
 
   # resources :users, :only => [ :show, :edit, :update ]
