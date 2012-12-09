@@ -8,11 +8,17 @@
  * Date: Tue Sep 4 23:38:33 2012 -0700
  *
  */
-
+.container-fluid {
+        width: 85% !important;
+        float:right;
+        right:5px;
+        padding: 0 0px 0 0px !important;
+}
 #calendar {
-		min-width: 580px;
-float: right;
-	width: 85% !important;
+	min-width: 580px;
+    float: right;
+    margin-right:20px !important;
+    width: 100% !important;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
@@ -21,16 +27,19 @@ float: right;
 	bottom: 2px;
 }
 
+.nav {
+    margin:0 !important;
+}
 #sidebar{
 	color:white;
 	text-align: left;
-	padding: 5px;
 	float: left;
 	left:0px;
 	position: fixed;
 	background-color: rgba(0,0,0,.5);
 	width: 15% !important;
 	height: 100%;
+    margin-right:0 !important;
 }
 
 #sidebar li a{
