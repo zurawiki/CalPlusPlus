@@ -6,13 +6,12 @@ class SessionsController < ApplicationController
     if session[:user_id]
       # our user is logged in
       logger.debug "USER VALIDATED! GOING TO CALENDAR!"
-      redirect_to "/home"
     else
       logger.debug "params: #{params.inspect}"
       services = ['google_oauth2']
       links = services.sort.map { |service| "<li style='margin: 15px;'><a href='/auth/#{service}'>#{service}</a></li>" }
-      render :text => "Authenticate with: <ul style='font-size: 20pt;'>#{links.join}</ul>", :layout => true
     end
+    redirect_to "/home"
   end
 
   def create
@@ -32,6 +31,6 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     session[:user_token] = nil
 
-    render :text => "You've logged out!"
+    redirect_to root_url, :notice => "You are now logged out!"
   end
 end

@@ -1,22 +1,34 @@
+<div class="jumbotron masthead">
+
+  <div class="container">
+    
+    <p>Select a Calendar to Import</p>
+</div>
+</div>
 <table>
   <thead>
   <tr>
-    <th>Name</th>
-    <th>ID</th>
+  	<th>Color</th>
+    <th>Calendar Name</th>
   </tr>
   </thead>
   <tbody>
   <% @result.data.items.each do |cal| %>
       <tr>
+      	<td>
+      		<table id="colorsquare"
+				style="background: <%= cal.backgroundColor %>">
+			</table>
         <td><%= cal.summary %></td>
-        <td><%= cal.id %>
-          <form name="<%= cal.etag %>" action="/import/calendar" method="get">
+		<td>
+          <form id="googlecal" name="<%= cal.etag %>" action="/import/calendar" method="get">
             <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
-            <input type="submit" value="SUBMIT"/>
+            <input  type="submit" class="btn btn-primary btn-large" value="IMPORT"/>
           </form>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
-<pre><%= @result.data.to_yaml %></pre>
+
+
