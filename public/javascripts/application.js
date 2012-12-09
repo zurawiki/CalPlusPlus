@@ -24,15 +24,15 @@ $(function () {
                     center:'title',
                     right:'month,agendaWeek,agendaDay'
                 },
-                selectable: true,
-                selectHelper: true,
-                editable: true,
-                ignoreTimezone: false,                
-                select: this.select,
-                eventClick: this.eventClick,
-                eventRender: this.eventRender,
-                eventDrop: this.eventDropOrResize,        
-                eventResize: this.eventDropOrResize
+                selectable:true,
+                selectHelper:true,
+                editable:true,
+                ignoreTimezone:false,
+                select:this.select,
+                eventClick:this.eventClick,
+                eventRender:this.eventRender,
+                eventDrop:this.eventDropOrResize,
+                eventResize:this.eventDropOrResize
             });
         },
         addAll:function () {
@@ -50,47 +50,47 @@ $(function () {
             this.eventView.model = this.collection.get(fcEvent.id);
             this.eventView.render();
         },
-        eventRender: function(event, element) {
+        eventRender:function (event, element) {
             if (event.importance < 0.33) {
-                element.addClass( 'fc-zero');
+                element.addClass('fc-zero');
             }
 
-            else if (event.importance < 0.66){
-                element.addClass( 'fc-plus');
-                element.css("border-color",event.color);
-                element.css("color",event.color);
+            else if (event.importance < 0.66) {
+                element.addClass('fc-plus');
+                element.css("border-color", event.color);
+                element.css("color", event.color);
                 element.css("background-color", "transparent");
             }
             else {
-                element.addClass( 'fc-plusplus');
+                element.addClass('fc-plusplus');
             }
             var time = event.start.format("longTime");
-                element.qtip({
-                    hide: {
-                        when: 'mouseout mousedown mouseup'
-                    },
-                    show: {
-                        delay: 5,
-                        when: 'mouseover'
-                    },
-                    content: {
-                        text: event.title + " at " +time
-                    },
-                    style: {
-                        padding: 5,
-                        background: '#424242',
-                        color: 'white',
-                        textAlign: 'center',
-                        border: {
-                        width: 7,
-                        radius: 5,
-                        color: '#424242'
+            element.qtip({
+                hide:{
+                    when:'mouseout mousedown mouseup'
+                },
+                show:{
+                    delay:5,
+                    when:'mouseover'
+                },
+                content:{
+                    text:event.title + " at " + time
+                },
+                style:{
+                    padding:5,
+                    background:'#424242',
+                    color:'white',
+                    textAlign:'center',
+                    border:{
+                        width:7,
+                        radius:5,
+                        color:'#424242'
                     }
-                                    },
-                    position: {
-                       adjust: { screen: true },
-                    }
-                });
+                },
+                position:{
+                    adjust:{ screen:true },
+                }
+            });
         },
         change:function (event) {
             // Look up the underlying event in the calendar and update its details from the model
@@ -101,7 +101,7 @@ $(function () {
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
             fcEvent.importance = event.get('importance');
-            this.el.fullCalendar('updateEvent', fcEvent);           
+            this.el.fullCalendar('updateEvent', fcEvent);
         },
         eventDropOrResize:function (fcEvent) {
             // Lookup the model that has the ID of the event and update its attributes
@@ -135,11 +135,12 @@ $(function () {
         },
         open:function () {
             this.$('#title').val(this.model.get('title'));
-            this.$('#color').val(this.model.get('color'));          
-            this.$('#allDay').val(this.model.get('allDay'));            
-            this.$('#importance').val(parseFloat(this.model.get('importance'))); 
+            this.$('#color').val(this.model.get('color'));
+            this.$('#allDay').val(this.model.get('allDay'));
+            this.$('#importance').val(parseFloat(this.model.get('importance')));
             this.$('#start').val(this.model.get('start'));
             this.$('#end').val(this.model.get('end'));
+            this.$('#user_id').val(this.model.get('user_id'));
         },
         save:function () {
             this.model.set({
@@ -148,7 +149,8 @@ $(function () {
                 'allDay':this.$('#allDay').attr('checked'),
                 'importance':this.$('#importance').val(),
                 'start':this.$('#start').val(),
-                'end':this.$('#end').val()
+                'end':this.$('#end').val(),
+                'user_id':this.$('#user_id').val()
             });
             if (this.model.isNew()) {
                 this.collection.create(this.model, {success:this.close});

@@ -2,8 +2,10 @@
 # update, rather than just passing them all in.
 class EventsController < ApplicationController
 
+  skip_before_filter :authenticate, :only => [:destroy, :create, :update]
+
   def index
-    render :json => Event.all
+    render :json => @user.events
   end
 
   def create
@@ -14,7 +16,8 @@ class EventsController < ApplicationController
                    :end => params[:end],
                    :title => params[:title],
                    :color => params[:color],
-                   :importance => params[:importance]
+                   :importance => params[:importance],
+                   :user_id => params[:user_id]
                )
   end
 
@@ -26,7 +29,8 @@ class EventsController < ApplicationController
         :end => params[:end],
         :title => params[:title],
         :color => params[:color],
-        :importance => params[:importance]
+        :importance => params[:importance],
+        :user_id => params[:user_id]
     )
     render :json => event
   end
