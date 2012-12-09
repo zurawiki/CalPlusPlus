@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
   before_save :calculate_importance
+  before_create :calculate_importance
 
   belongs_to :user, :inverse_of => :events
   validates :title, :start, :end, :importance, :user_id, :presence => true
