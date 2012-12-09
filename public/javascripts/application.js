@@ -153,6 +153,7 @@ $(function () {
                 'importance':this.$('#importance').val(),
                 'start':this.$('#start').val(),
                 'end':this.$('#end').val(),
+                'autoImportance':this.$('#autoImportance').attr('checked'),
                 'user_id':this.$('#user_id').val()
             });
             if (this.model.isNew()) {
