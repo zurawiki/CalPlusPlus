@@ -147,8 +147,8 @@ $(function () {
                 'color':this.$('#color').val(),
                 'allDay':this.$('#allDay').attr('checked'),
                 'importance':this.$('#importance').val(),
-                'start':this.$('#start').val(),
-                'end':this.$('#end').val()
+                'start':this.$('#startime').val() + this.$('#startdate').val(),
+                'end':this.$('#endtime').val() + this.$('#enddate').val()
             });
             if (this.model.isNew()) {
                 this.collection.create(this.model, {success:this.close});

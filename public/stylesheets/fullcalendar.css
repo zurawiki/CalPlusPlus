@@ -166,6 +166,7 @@ html .fc,
 }
 
 .fc-view {
+
 	width: 100%; /* needed for view switching (when view is absolute) */
 	background-color: rgba(254,253,245,0.75);  /* 50% transparent */	
 	box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
@@ -472,9 +473,9 @@ a.fc-event {
 
 /* Reusable Separate-border Table
 ------------------------------------------------------------*/
-
 table.fc-border-separate {
     border-collapse: separate;
+    height: 100%;
 }
 
 .fc-border-separate th,
