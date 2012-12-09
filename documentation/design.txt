@@ -1,6 +1,10 @@
 For our web-based projects, we certainly had many options from PHP to Python, but we wanted to take advantage of the latest web technologies. We explored many options and decided to venture into Node.js. To work on code together, we used git and bitbucket to share our code. Git also came in handy when it came time to deploy our code on heroku.
 
+<<<<<<< HEAD
 On the back-end, we initially decided to use Node.js as our back-end and database to store various models for events, calendars, and users. We decided to use Node.js since we could use JavaScript on both the front and back end which made our application very compatible. Node.js is also asynchronous which means it is very good for writing high performance applications. We then decided to use the Google Calendar API in order to import calendars and events from Google Calendar into our node.js database.
+=======
+We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generated HTML.
+>>>>>>> a0274064e668c742de6430ea7f4e4e4147e838d5
 
 We used railwayjs as a framework for node. This framework emulates Ruby on Rails as seen in their templating system, EJS. We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generate HTML, much like ERB in Rails.
 

@@ -70,7 +70,8 @@ $(function () {
                     when:'mouseout mousedown mouseup'
                 },
                 show:{
-                    delay:5,
+                    delay:1,
+                    effect: { length: 10 },
                     when:'mouseover'
                 },
                 content:{

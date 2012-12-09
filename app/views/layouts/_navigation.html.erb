@@ -12,20 +12,17 @@
       <a href="/import" class="btn btn-primary">Import from Google</a>
       </br>
       </br>
-      <p>Here at Cal++, we believe calendars should be easy on the eyes and minds. Make your events Normal, Plus or PlusPlus and relish the beauty of your new, simplified calendar. </p>
-      <p style="text-align:center; font-weight: bold;">Cal++: Calendars Done. Right. </p>
        <% end %>
-          <% if @user %>
+             <p>Here at Cal++, we believe calendars should be easy on the eyes and minds. Make your events Normal, Plus or PlusPlus and relish the beauty of your new, simplified calendar. </p>
+      <p style="text-align:center; font-weight: bold;">Cal++: Calendars Done. Right. </p>
+     <div id='sidefoot'><p style="text-align:center;">Zurawicki, Scharfstein and Ho</br>&#169 2012  </p></div>
+  
+      <% if @user %>
         <li>
           <%= link_to 'Logout', '/logout' %>
         </li>
-    <% else %>
-        <li>
-          <%= link_to 'Login', '/login' %>
-        </li>
     <% end %>
-  </ul>
-      <div id='sidefoot'><p style="text-align:center;">Zurawicki, Scharfstein and Ho</br>&#169 2012  </p></div>
+     </ul>
 
   </div>
 
