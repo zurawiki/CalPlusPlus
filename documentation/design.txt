@@ -1,6 +1,9 @@
 For our web-based projects, we certainly had many options from PHP to Python, but we wanted to take advantage of the latest web technologies. We explored many options and decided to venture into Node.js. To work on code together, we used git and bitbucket to share our code. Git also came in handy when it came time to deploy our code on heroku.
 
+
 On the back-end, we initially decided to use Node.js as our back-end and database to store various models for events, calendars, and users. We decided to use Node.js since we could use JavaScript on both the front and back end which made our application very compatible. Node.js is also asynchronous which means it is very good for writing high performance applications. We then decided to use the Google Calendar API in order to import calendars and events from Google Calendar into our node.js database.
+
+We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generated HTML.
 
 We used railwayjs as a framework for node. This framework emulates Ruby on Rails as seen in their templating system, EJS. We initially used EJS (Embedded JavaScript) to populate the calendar, event, and login forms. EJS was well suited for our purposes since it allows you to insert dynamically generate HTML, much like ERB in Rails.
 
@@ -11,3 +14,4 @@ We decided to implement the user login through Google since most people have a G
 On the front-end side, we use JQuery, as well as additional JQuery plugins such as FullCalendar and qTip. FullCalendar is a calendar JQuery plugin that gives us a very basic framework and view for displaying events. We used this library as a base, and built upon it with extra features such as adding events and displaying data in the calendar by pulling data from the database. qTip is another JQuery plugin that gives neat rollover functionality. Backbone.js was the real hero on the frontend because its framework allowed for seamless client-server interaction. We did not have to think about all the ajax requests to be made, instead we let Backbone and Rails do all the heavy lifting.
 
 Overall, we are very happy that we stayed away from the PHP/MySQL stack. We avoid dealing with an inconsistent language, we got exposure to many modern, powerful, and scalable web languages, and we much more productive as a result. When we first started our project in Node we moved slowly but by the time we had to switch to Rails, we moved very quickly. We built on the knowledge we gained from Railway and we took advantage of the many Rubygems available. PHP is popular because it integrate nicely with Apache and many other webservers, but with the rise of Heroku and other cloud based services, hosting a Rails or Node app has become painless.
+

@@ -143,8 +143,8 @@ $(function () {
             }
             this.$('#allDay').val(this.model.get('allDay'));
             this.$('#importance').val(parseFloat(this.model.get('importance')));
-            this.$('#start').val(this.model.get('start'));
-            this.$('#end').val(this.model.get('end'));
+            this.$('#start').val(new Date(this.model.get('start')).format("mm/dd/yyyy HH:MM"));
+            this.$('#end').val(new Date(this.model.get('end')).format("mm/dd/yyyy HH:MM"));
         },
         save:function () {
             this.model.set({
