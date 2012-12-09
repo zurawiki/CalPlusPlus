@@ -8,12 +8,30 @@
  * Date: Tue Sep 4 23:38:33 2012 -0700
  *
  */
+
 #calendar {
-	width: 100% !important;
+		min-width: 580px;
+float: right;
+	width: 85% !important;
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
+#sidefoot {
+	position: absolute;
+	bottom: 2px;
+}
 
+#sidebar{
+	color:white;
+	text-align: left;
+	padding: 5px;
+	float: left;
+	left:0px;
+	position: fixed;
+	background-color: rgba(0,0,0,.5);
+	width: 15% !important;
+	height: 100%
+}
 
 body {
 	margin: 0 0 0 0 !important;
@@ -480,7 +498,7 @@ table.fc-border-separate {
 
 /* Month View, Basic Week View, Basic Day View
 ------------------------------------------------------------------------*/
-.fc-content tbody {
+.fc-content .fc-view-month tbody {
 	background-image: url('/stylesheets/images/torn.png');
 	background-repeat: no-repeat;
 }
