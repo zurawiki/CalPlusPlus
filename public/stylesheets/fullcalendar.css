@@ -187,7 +187,7 @@ html .fc,
 .fc-state-highlight {
     /* <td> today cell */
     /* TODO: add .fc-today to <th> */
-    background: url('/stylesheets/images/torn.png') no-repeat #eaeff8;
+    background: #eaeff8;
 }
 
 .fc-cell-overlay {
@@ -502,7 +502,6 @@ table.fc-border-separate {
 /* Month View, Basic Week View, Basic Day View
 ------------------------------------------------------------------------*/
 .fc-content .fc-view-month tbody {
-	background-image: url('/stylesheets/images/torn.png');
 	background-repeat: no-repeat;
 }
 .fc-grid th {

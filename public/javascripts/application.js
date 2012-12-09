@@ -3,7 +3,7 @@ $(function () {
 
     var Events = Backbone.Collection.extend({
         model:Event,
-        url:'events'
+        url:'/events'
     });
 
     var EventsView = Backbone.View.extend({
@@ -140,7 +140,6 @@ $(function () {
             this.$('#importance').val(parseFloat(this.model.get('importance')));
             this.$('#start').val(this.model.get('start'));
             this.$('#end').val(this.model.get('end'));
-            this.$('#user_id').val(this.model.get('user_id'));
         },
         save:function () {
             this.model.set({
