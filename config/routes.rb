@@ -4,7 +4,7 @@ CalPlusPlus::Application.routes.draw do
 
   get "main/home"
 
-  root :to => 'sessions#new'
+  root :to => 'main#welcome'
 
   # resources :users, :only => [ :show, :edit, :update ]
 
@@ -18,7 +18,7 @@ CalPlusPlus::Application.routes.draw do
 
   resources :events
   match '/import' => 'import#list'
-  get '/import/list' => 'import#list'
-  get '/import/calendar' => 'import#calendar'
+  get "/import/list"
+  get "/import/calendar"
 
 end
