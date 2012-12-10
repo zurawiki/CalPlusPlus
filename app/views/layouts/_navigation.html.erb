@@ -1,23 +1,5 @@
 <div id='sidebar'>
   <ul class="nav">
-
-<<<<<<< HEAD
- <% if @user %>
- <a href="<%=root_path%>" target="_self">
-<img src="/images/logo.png" alt="cal++ logo" width='300px';></a>
-  <span>Welcome <%= @user.name %>!</span>
-  <br/>
-  <br/>
-      <a href="/import" class="btn btn-primary">Import from Google</a>
-      </br>
-      </br>
-       <% end %>
-             <p>Here at Cal++, we believe calendars should be easy on the eyes and minds. Make your events Normal, Plus or PlusPlus and relish the beauty of your new, simplified calendar. </p>
-      <p style="text-align:center; font-weight: bold;">Cal++: Calendars. Done. Right. </p>
-     <div id='sidefoot'><p style="text-align:center;">Zurawicki, Scharfstein and Ho</br>&#169 2012  </p></div>
-  
-      <% if @user %>
-=======
     <% if @user %>
         <a href="<%= root_path %>" target="_self">
           <img src="/images/logo.png" alt="cal++ logo" width='300px'></a>
@@ -31,12 +13,11 @@
     <p>Here at Cal++, we believe calendars should be easy on the eyes and minds. Make your events Normal, Plus or
       PlusPlus and relish the beauty of your new, simplified calendar. </p>
 
-    <p style="text-align:center; font-weight: bold;">Cal++: Calendars Done. Right. </p>
+    <p style="text-align:center; font-weight: bold;">Cal++: Calendars. Done. Right. </p>
 
     <div id='sidefoot'><p style="text-align:center;">Zurawicki, Scharfstein and Ho<br/>&#169 2012 </p></div>
 
     <% if @user %>
->>>>>>> cdee44e7da2002f1792c64f11241b98fa8b3d663
         <li>
           <%= link_to 'Logout', '/logout' %>
         </li>
@@ -44,6 +25,3 @@
   </ul>
 
 </div>
-
-   
-  
