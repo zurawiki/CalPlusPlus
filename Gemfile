@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '~> 3.2'
 gem 'sqlite3', :group => 'development'
-#gem 'system_timer', :group => 'development'
 gem 'pg', :group => 'production'
 
 group :assets do
@@ -15,19 +14,8 @@ end
 gem 'omniauth', '>= 1.1.0', :git => 'git://github.com/intridea/omniauth.git'
 gem 'omniauth-oauth2', :git => 'git://github.com/intridea/omniauth-oauth2.git'
 
-# Under active development
-#gem 'omniauth-tumblr', :git => 'git://github.com/jamiew/omniauth-tumblr.git'
-#gem 'omniauth-tumblr', :path => '~/dev/omniauth-strategies/omniauth-tumblr'
-#gem 'omniauth-youtube', :git => 'git://github.com/jamiew/omniauth-youtube.git'
-#gem 'omniauth-youtube', :path => '~/dev/omniauth-strategies/omniauth-youtube'
-
-
-# For testing/comparison
-#gem 'omniauth-facebook'
-#gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-#gem 'omniauth-twitter'
-#gem 'omniauth-vimeo'
+
 gem 'nifty-generators'
 gem 'google-api-client', '>= 0.5.0', :require => 'google/api_client'
 gem 'thin'

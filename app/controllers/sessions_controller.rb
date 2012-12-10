@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
       logger.debug "USER VALIDATED! GOING TO CALENDAR!"
     else
       logger.debug "params: #{params.inspect}"
-      services = ['google_oauth2']
-      links = services.sort.map { |service| "<li style='margin: 15px;'><a href='/auth/#{service}'>#{service}</a></li>" }
     end
     redirect_to "/home"
   end

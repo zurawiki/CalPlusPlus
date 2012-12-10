@@ -43,7 +43,7 @@ class ImportController < ApplicationController
         )
       rescue
         logger.warn "Found an all day event"
-        Event.create(
+        Event.create!(
             :allDay => true,
             :start => Date.parse(event.start.date),
             :end => (Date.parse(event.end.date)-1),

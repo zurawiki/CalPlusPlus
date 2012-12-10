@@ -89,7 +89,7 @@ $(function () {
                     }
                 },
                 position:{
-                    adjust:{ screen:true },
+                    adjust:{ screen:true }
                 }
             });
         },
@@ -102,7 +102,7 @@ $(function () {
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
             fcEvent.importance = event.get('importance');
-            fcEvent.autoImportance = event.get('autoImportance')
+            fcEvent.autoImportance = event.get('autoImportance');
             this.el.fullCalendar('updateEvent', fcEvent);
         },
         eventDropOrResize:function (fcEvent) {
