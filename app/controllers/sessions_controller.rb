@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    render :text => "FAILURE :-("
+    redirect_to root_url, :notice => "There was an error authentication with Google. Please try again."
   end
 
   def destroy
