@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
   before_save :calculate_importance
+  before_create :calculate_importance
 
   belongs_to :user, :inverse_of => :events
   validates :title, :start, :end, :importance, :user_id, :presence => true
@@ -8,8 +9,8 @@ class Event < ActiveRecord::Base
   def calculate_importance
     if self.autoImportance
 
-      good_list = ["test", "meeting", "exam", "final", "project", "due", "important", "essay", "proctor", "game", "match", "tournament", "recital", "concert", "interview"]
-      bad_list = ["practice", "class", "lecture", "section", "rehearsal", "seminar"]
+      good_list = %w(test meeting exam final project due important essay proctor game match tournament recital concert interview)
+      bad_list = %w(practice class lecture section rehearsal seminar)
 
       good = {}
       bad = {}
@@ -25,7 +26,7 @@ class Event < ActiveRecord::Base
       # read title
       words = self.title.split(/\W+/)
 
-      score = 0.5;
+      score = 0.5
 
       words.each do |word|
         word = word.downcase

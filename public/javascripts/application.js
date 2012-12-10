@@ -71,7 +71,7 @@ $(function () {
                 },
                 show:{
                     delay:1,
-                    effect: { length: 10 },
+                    effect:{ length:10 },
                     when:'mouseover'
                 },
                 content:{
@@ -89,7 +89,7 @@ $(function () {
                     }
                 },
                 position:{
-                    adjust:{ screen:true },
+                    adjust:{ screen:true }
                 }
             });
         },
@@ -102,6 +102,7 @@ $(function () {
             fcEvent.start = event.get('start');
             fcEvent.end = event.get('end');
             fcEvent.importance = event.get('importance');
+            fcEvent.autoImportance = event.get('autoImportance');
             this.el.fullCalendar('updateEvent', fcEvent);
         },
         eventDropOrResize:function (fcEvent) {
@@ -137,12 +138,12 @@ $(function () {
         open:function () {
             this.$('#title').val(this.model.get('title'));
             this.$('#color').val(this.model.get('color'));
-            if (this.model.get('color') == "#000000")
-            {
-                this.$('#color').val('#'+Math.floor(Math.random()*16777215).toString(16));
+            if (this.model.get('color') == "#000000") {
+                this.$('#color').val('#' + Math.floor(Math.random() * 16777215).toString(16));
             }
-            this.$('#allDay').val(this.model.get('allDay'));
+            this.$('#allDay').prop('checked', this.model.get('allDay'));
             this.$('#importance').val(parseFloat(this.model.get('importance')));
+            this.$('#autoImportance').prop('checked', this.model.get('autoImportance'));
             this.$('#start').val(new Date(this.model.get('start')).format("mm/dd/yyyy HH:MM"));
             this.$('#end').val(new Date(this.model.get('end')).format("mm/dd/yyyy HH:MM"));
         },
@@ -150,11 +151,11 @@ $(function () {
             this.model.set({
                 'title':this.$('#title').val(),
                 'color':this.$('#color').val(),
-                'allDay':this.$('#allDay').attr('checked'),
+                'allDay':this.$('#allDay').prop('checked'),
                 'importance':this.$('#importance').val(),
-                'start':new Date(this.$('#start').val()).toString(),
-                'end':new Date(this.$('#end').val()).toString(),
-                'autoImportance':this.$('#autoImportance').attr('checked'),
+                'start':new Date(this.$('#start').val()).toUTCString(),
+                'end':new Date(this.$('#end').val()).toUTCString(),
+                'autoImportance':this.$('#autoImportance').prop('checked'),
                 'user_id':this.$('#user_id').val()
             });
             if (this.model.isNew()) {
@@ -174,7 +175,24 @@ $(function () {
     var events = new Events();
     new EventsView({el:$("#calendar"), collection:events}).render();
     events.fetch();
-    
-$('#start').datetimepicker();
-$('#end').datetimepicker();
+
+    $('#start').datetimepicker();
+    $('#end').datetimepicker();
 });
+
+// Google Analytics
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-36903095-1']);
+_gaq.push(['_setDomainName', 'calplusplus.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_trackPageview']);
+
+(function () {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ga, s);
+})();
+// End Google Analytics

@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
       logger.debug "USER VALIDATED! GOING TO CALENDAR!"
     else
       logger.debug "params: #{params.inspect}"
-      services = ['google_oauth2']
-      links = services.sort.map { |service| "<li style='margin: 15px;'><a href='/auth/#{service}'>#{service}</a></li>" }
     end
     redirect_to "/home"
   end
@@ -24,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    render :text => "FAILURE :-("
+    redirect_to root_url, :notice => "There was an error authentication with Google. Please try again."
   end
 
   def destroy
