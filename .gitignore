@@ -3,6 +3,7 @@
 .sass-cache
 capybara-*.html
 .rspec
+.rvmrc
 /.bundle
 /vendor/bundle
 /log/*
@@ -14,7 +15,5 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
-.idea
-db/schema.db
-bin
-schema.rb
+.project
+Gemfile.lock
