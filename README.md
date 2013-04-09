@@ -13,6 +13,22 @@ License from example app:
 Omniauth + Rails example application
 ==================================
 
+
+How to Install
+==============
+
+Install Ruby 1.9.3 with Rails 3.2
+
+Install IntelliJ IDEA 12 and install the Ruby and Rails plugin
+
+Open the project in the git root
+
+Run
+    bundler install
+    db:migrate
+
+Run server in development mode
+
 License
 -------
 
