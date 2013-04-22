@@ -1,0 +1,160 @@
+class MyClassifer
+  attr_accessor :word_list
+  attr_accessor :category_list
+
+  def initialize(name)
+    @word_list = {}
+    @category_list = {}
+    @training_count = 0
+  end
+
+  def add_word(word, category)
+    @word_list[word] ||= {}
+
+    @word_list[word][:categories] ||= {}
+    @word_list[word][:categories][category] ||= 0
+    @word_list[word][:categories][category] += 1
+
+    @word_list[word][:total_word] ||= 0
+    @word_list[word][:total_word] += 1
+
+    @category_list[category] ||= {}
+    @category_list[category][:total_word] ||= 0
+    @category_list[category][:total_word] += 1
+  end
+
+  def add_category(category)
+    @category_list[category] ||= {}
+    @category_list[category][:count] ||= 0
+    @category_list[category][:count] += 1
+
+    @training_count ||= 0
+    @training_count += 1
+  end
+
+  def word_count(word, category)
+    return 0.0 unless @word_list[word] && @word_list[word][:categories] && @word_list[word][:categories][category]
+    @word_list[word][:categories][category].to_f
+  end
+
+  def total_word_count(word)
+    return 0.0 unless @word_list[word] && @word_list[word][:total_word]
+    @word_list[word][:total_word].to_f
+  end
+
+  def total_word_count_in_cat(category)
+    return 0.0 unless @category_list[category] && @category_list[category][:total_word]
+    @category_list[category][:total_word].to_f
+  end
+
+  def category_count(category)
+    @category_list[category][:count] ? @category_list[category][:count].to_f : 0.0
+  end
+
+  def total_category_count
+    @training_count
+  end
+
+  def tokenize(string)
+    string.split
+  end
+
+  def train(category, text)
+    tokenize(text).each { |w| add_word(w, category) }
+    add_category(category)
+  end
+
+  def word_prob(word, category)
+    total_word_in_cat = total_word_count_in_cat(category)
+    return 0.0 if total_word_in_cat == 0
+    word_count(word, category).to_f / total_word_in_cat
+  end
+
+  def word_weighted_average(word, category)
+
+    # calculate current probability
+    basic_prob = word_prob(word, category)
+
+    # count the number of times this word has appeared in all
+    # categories
+    totals = total_word_count(word)
+
+    # the final weighted average
+    (1 * 0.1 + totals * basic_prob) / (1 + totals)
+  end
+
+  def doc_prob(text, category)
+    tokenize(text).map { |w|
+      word_weighted_average(w, category)
+    }.inject(1) { |p, c| p * c }
+  end
+
+  def text_prob(text, category)
+    cat_prob = category_count(category) / total_category_count
+    doc_prob = doc_prob(text, category)
+    cat_prob * doc_prob
+  end
+
+  def categories
+    @category_list.keys
+  end
+
+  def category_scores(text)
+    probs = {}
+    categories.each do |cat|
+      probs[cat] = text_prob(text, cat)
+    end
+    probs.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
+  end
+
+  def classify(text)
+    max_prob = 0.0
+    best = nil
+
+    scores = cat_scores(text)
+    scores.each do |score|
+      cat, prob = score
+      if prob > max_prob
+        max_prob = prob
+        best = cat
+      end
+    end
+  end
+
+  cls = MyClassifer.new("Cats or Dogs")
+
+  cls.train(:dog, "dog good")
+  cls.train(:cat, "cat good fuzzy")
+  cls.train(:dog, "love dog good")
+  cls.train(:cat, "fuzzy")
+  cls.train(:cat, "feline")
+  cls.train(:dog, "canine")
+
+  cls.categories
+
+  p cls.classify("cat")
+  p cls.classify("dog")
+  p cls.classify("hate")
+  p cls.classify("love")
+  p cls.classify("fuzzy")
+  p cls.classify("good")
+
+  cls2 = MyClassifer.new("impo or not")
+
+  cls2.train(:important, "meet Sadik")
+  cls2.train(:not, "buy drink")
+  cls2.train(:important, "lunch with Kevin")
+  cls2.train(:not, "go walk")
+  cls2.train(:important, "do math homework")
+  cls2.train(:not, "browse facebook")
+
+  cls2.categories
+
+  p cls2.classify("meet Chad")
+  p cls2.classify("dinner with Dev")
+  p cls2.classify("physics homework")
+  p cls2.classify("lookup facebook")
+  p cls2.classify("go to CVS")
+  p cls2.classify("class")
+
+end
