@@ -45,11 +45,14 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     addressable (2.3.3)
+    ansi (1.4.3)
+    archive-tar-minitar (0.5.2)
     arel (3.0.2)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
+    awesome_print (1.1.0)
     builder (3.0.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -58,6 +61,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    columnize (0.3.6)
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
@@ -86,11 +90,19 @@ GEM
       multi_json (>= 1.5)
     launchy (2.2.0)
       addressable (~> 2.3)
+    linecache19 (0.5.12)
+      ruby_core_source (>= 0.1.4)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.22)
+    minitest (2.5.1)
+    minitest-reporters (0.9.0)
+      ansi
+      builder
+      minitest (>= 2.0, < 4.0)
+      powerbar
     multi_json (1.7.2)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
@@ -107,6 +119,9 @@ GEM
       omniauth-oauth2
     pg (0.15.1)
     polyglot (0.3.3)
+    powerbar (1.0.11)
+      ansi (~> 1.4.0)
+      hashie (>= 1.1.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -132,6 +147,16 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    ruby-debug-base19 (0.11.25)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -142,6 +167,10 @@ GEM
       faraday (~> 0.8.1)
       jwt (>= 0.1.5)
       multi_json (>= 1.0.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -157,6 +186,8 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    turn (0.9.6)
+      ansi
     tzinfo (0.3.37)
     uglifier (2.0.1)
       execjs (>= 0.3.0)
@@ -167,15 +198,21 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   coffee-rails (~> 3.2)
   google-api-client (>= 0.5.0)
+  minitest (>= 2.1.0)
+  minitest-reporters
   nifty-generators
   omniauth (>= 1.1.0)!
   omniauth-google-oauth2
   omniauth-oauth2!
   pg
   rails (~> 3.2)
+  ruby-debug19
   sass-rails (~> 3.2)
+  simplecov
   sqlite3
   thin
+  turn
   uglifier (>= 1.0)

@@ -5,3 +5,15 @@
 require File.expand_path('../config/application', __FILE__)
 
 CalPlusPlus::Application.load_tasks
+
+require 'bundler/setup'
+require 'rake/testtask'
+require 'bayes'
+
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+end
+
+task :default => :test

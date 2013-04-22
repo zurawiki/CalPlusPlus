@@ -111,7 +111,7 @@ class MyClassifer
     max_prob = 0.0
     best = nil
 
-    scores = cat_scores(text)
+    scores = category_scores(text)
     scores.each do |score|
       cat, prob = score
       if prob > max_prob
@@ -119,42 +119,7 @@ class MyClassifer
         best = cat
       end
     end
+    best
   end
-
-  cls = MyClassifer.new("Cats or Dogs")
-
-  cls.train(:dog, "dog good")
-  cls.train(:cat, "cat good fuzzy")
-  cls.train(:dog, "love dog good")
-  cls.train(:cat, "fuzzy")
-  cls.train(:cat, "feline")
-  cls.train(:dog, "canine")
-
-  cls.categories
-
-  p cls.classify("cat")
-  p cls.classify("dog")
-  p cls.classify("hate")
-  p cls.classify("love")
-  p cls.classify("fuzzy")
-  p cls.classify("good")
-
-  cls2 = MyClassifer.new("impo or not")
-
-  cls2.train(:important, "meet Sadik")
-  cls2.train(:not, "buy drink")
-  cls2.train(:important, "lunch with Kevin")
-  cls2.train(:not, "go walk")
-  cls2.train(:important, "do math homework")
-  cls2.train(:not, "browse facebook")
-
-  cls2.categories
-
-  p cls2.classify("meet Chad")
-  p cls2.classify("dinner with Dev")
-  p cls2.classify("physics homework")
-  p cls2.classify("lookup facebook")
-  p cls2.classify("go to CVS")
-  p cls2.classify("class")
 
 end
