@@ -83,7 +83,7 @@ class MyClassifer
     (1 * 0.1 + totals * basic_prob) / (1 + totals)
   end
 
-  def doc_prob(text, category)
+  def document_probability(text, category)
     tokenize(text).map { |w|
       word_weighted_average(w, category)
     }.inject(1) { |p, c| p * c }
@@ -91,7 +91,7 @@ class MyClassifer
 
   def text_prob(text, category)
     cat_prob = category_count(category) / total_category_count
-    doc_prob = doc_prob(text, category)
+    doc_prob = document_probability(text, category)
     cat_prob * doc_prob
   end
 
