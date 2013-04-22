@@ -86,7 +86,9 @@ class MyClassifer
   def document_probability(text, category)
     tokenize(text).map { |w|
       word_weighted_average(w, category)
-    }.inject(1) { |p, c| p * c }
+    }.inject(1) do |p, c|
+      p * c
+    end
   end
 
   def text_prob(text, category)

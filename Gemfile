@@ -19,9 +19,12 @@ gem 'omniauth-google-oauth2'
 gem 'nifty-generators'
 gem 'google-api-client', '>= 0.5.0', :require => 'google/api_client'
 gem 'thin'
-gem 'minitest-reporters'
-gem 'minitest', '>= 2.1.0'
-gem 'turn'
-gem 'simplecov'
-gem 'awesome_print'
-gem 'ruby-debug19'
+
+group :test do
+  gem 'minitest-reporters'
+  gem 'minitest', '>= 2.1.0'
+  gem 'turn'
+  gem 'simplecov'
+  gem 'test-unit'
+  gem 'awesome_print'
+end
