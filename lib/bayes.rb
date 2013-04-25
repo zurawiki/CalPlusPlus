@@ -3,9 +3,13 @@ class MyClassifer
   attr_accessor :category_list
 
   def initialize(name)
-    @word_list = {}
-    @category_list = {}
-    @training_count = 0
+    if (Rails.cache.read(name) != nil)
+      self = Rails.cache.read(name)
+    else
+      @word_list = {}
+      @category_list = {}
+      @training_count = 0
+    end
   end
 
   def add_word(word, category)
