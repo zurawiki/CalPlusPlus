@@ -23,7 +23,7 @@ gem 'lemmatizer'
 
 group :test do
   gem 'minitest-reporters'
-  gem 'minitest', '>= 2.1.0'
+  gem 'minitest'
   gem 'turn'
   gem 'simplecov'
   gem 'test-unit'

@@ -1,19 +1,16 @@
+require 'minitest/autorun'
+require 'minitest/reporters'
+require 'turn'
 require 'simplecov'
 SimpleCov.start
 
-require 'turn'
-require 'minitest/autorun'
-require 'bayes'
+ENV["RAILS_ENV"] = "test"
+require File.expand_path('../../config/environment', __FILE__)
+require "rails/test_help"
 
-require 'minitest/reporters'
-MiniTest::Unit.runner = MiniTest::SuiteRunner.new
-if ENV["RM_INFO"] || ENV["TEAMCITY_VERSION"]
-  MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMineReporter.new
-elsif ENV['TM_PID']
-  MiniTest::Unit.runner.reporters << MiniTest::Reporters::RubyMateReporter.new
-else
-  MiniTest::Unit.runner.reporters << MiniTest::Reporters::ProgressReporter.new
-end
+MiniTest::Unit.runner = MiniTest::ReporterRunner.new
+MiniTest::Unit.runner.reporters << MiniTest::Reporters.use!
+
 
 Turn.config do |c|
   # use one of output formats:

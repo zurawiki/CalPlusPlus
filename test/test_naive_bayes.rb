@@ -1,3 +1,4 @@
+require 'bayes'
 require 'test_helper'
 
 class TestNaiveBayesClassification < TestBase
