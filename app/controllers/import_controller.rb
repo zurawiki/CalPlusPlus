@@ -52,6 +52,8 @@ class ImportController < ApplicationController
   def train
     category = params[:category]
     events = get_calendar_events
+    color = '#fff'
+
 
     events.each do |event|
       item = Event.create(
@@ -64,7 +66,7 @@ class ImportController < ApplicationController
           :autoImportance => true,
           :user_id => @user.id
       )
-      @classifier.train category, item
+      @classifier.train category, item.title
     end
 
     redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"

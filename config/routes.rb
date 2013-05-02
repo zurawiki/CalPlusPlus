@@ -1,6 +1,6 @@
 CalPlusPlus::Application.routes.draw do
   root :to => 'main#welcome'
-  get "home" => "main#home"
+  get 'home' => 'main#home'
 
   # resources :users, :only => [ :show, :edit, :update ]
   post '/oauth/request_token' => 'sessions#new'
@@ -11,8 +11,9 @@ CalPlusPlus::Application.routes.draw do
   match '/logout' => 'sessions#destroy', :as => :logout
 
   match '/import' => 'import#list'
-  get "/import/list"
-  get "/import/calendar"
+  get '/import/list'
+  get '/import/calendar'
+  get '/import/train'
 
   resources :events
 

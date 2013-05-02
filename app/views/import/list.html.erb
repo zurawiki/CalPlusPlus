@@ -8,8 +8,10 @@
 <table>
     <thead>
     <tr>
-        <th>Color</th>
-        <th>Calendar Name</th>
+        <th><h6>Color</h6></th>
+        <th><h3>Calendar Name</h3></th>
+        <th><h6>Import</h6></th>
+        <th><h6>Train as</h6></th>
     </tr>
     </thead>
     <tbody>
@@ -22,8 +24,22 @@
             <td><%= cal.summary %></td>
             <td>
                 <form id="googlecal" name="<%= cal.etag %>" action="/import/calendar" method="get">
-                    <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
                     <input type="submit" class="btn btn-primary btn-large" value="Import"/>
+                    <input type="hidden" id="id" name="id" value="<%= cal.id %>"/>
+                </form>
+            </td>
+            <td>
+                <form action="/import/train" method="get">
+                    <input type="submit" class="btn btn-danger btn-mini" value="Important"/>
+                    <input type="hidden" name="id" value="<%= cal.id %>"/>
+                    <input type="hidden" name="category" value="important"/>
+
+                </form>
+                <form action="/import/train" method="get">
+                    <input type="submit" class="btn btn-mini" value="Not important"/>
+                    <input type="hidden" name="id" value="<%= cal.id %>"/>
+                    <input type="hidden" name="category" value="not"/>
+
                 </form>
             </td>
         </tr>
