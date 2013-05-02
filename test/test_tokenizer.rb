@@ -13,7 +13,7 @@ class TestTokenizer < TestBase
          :importance => 0,
          :autoImportance => true,
          :user_id => 42,
-         :location => ""
+         :location => ''
      )
     puts toke.tokenize(new_event)
     assert(true)
