@@ -18,7 +18,8 @@ class EventsController < ApplicationController
                    :color => params[:color],
                    :importance => params[:importance],
                    :autoImportance => params[:autoImportance],
-                   :user_id => params[:user_id]
+                   :user_id => params[:user_id],
+                   :location => params[:location]
                )
   end
 
@@ -32,7 +33,8 @@ class EventsController < ApplicationController
         :color => params[:color],
         :importance => params[:importance],
         :autoImportance => params[:autoImportance],
-        :user_id => params[:user_id]
+        :user_id => params[:user_id],
+        :location => params[:location]
     )
     render :json => event
   end
