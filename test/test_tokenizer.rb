@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'tokenizer'
+require 'lib/stuff-classifier/tokenizer'
 
 class TestTokenizer < TestBase
   def test_tokenize_event

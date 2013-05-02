@@ -15,17 +15,16 @@ class StuffClassifier::Tokenizer
     end
     #tokenize locations
     loc = event.location
-    loc ||= "no_location"
-
+    if loc.empty?
+      loc = "no_loc"
+    end
     features += "loc:#{loc}"
 
     #tokenize times
     start_time = event.start
-    start_time ||= "no_start_time"
     features += "start_t:#{start_time}"
 
     end_time = event.end
-    end_time ||= "no_end_time"
     features += "start_t:#{end_time}"
   end
 
