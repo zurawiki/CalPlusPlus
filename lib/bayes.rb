@@ -1,5 +1,3 @@
-require "lemmatizer"
-
 class MyClassifer
   attr_reader :name
   attr_reader :word_list
@@ -11,7 +9,7 @@ class MyClassifer
   attr_accessor :min_prob
 
 
-  def initialize(name, opts={})
+  def initialize(name, options={})
 
     @name = name
     if !options[:purge] && (Rails.cache.read @name) != nil
@@ -21,10 +19,10 @@ class MyClassifer
       @word_list = {}
       @category_list = {}
       @training_count = 0
-      @weight = opts[:weight] || 1.0
-      @assumed_prob = opts[:assumed_prob] || 0.1
-      @thresholds = opts[:thresholds] || {}
-      @min_prob = opts[:min_prob] || 0.0
+      @weight = options[:weight] || 1.0
+      @assumed_prob = options[:assumed_prob] || 0.1
+      @thresholds = options[:thresholds] || {}
+      @min_prob = options[:min_prob] || 0.0
     end
   end
 
@@ -76,14 +74,13 @@ class MyClassifer
   end
 
   def tokenize(string)
-    lem = Lemmatizer.new
-    lem.lemma(string)
+    string.split
   end
 
   def train(category, text)
     tokenize(text).each { |w| add_word(w, category) }
     add_category(category)
-    Rails.cache.write(@name, YAML::dumps)
+    Rails.cache.write @name, (YAML::dumps self)
   end
 
   def word_probability(word, category)
