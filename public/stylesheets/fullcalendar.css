@@ -24,10 +24,6 @@
     background-size: 100%;
 }
 
-#sidefoot {
-    position: center;
-}
-
 .nav {
     margin: 0 !important;
 }
@@ -539,8 +535,6 @@ table.fc-border-separate {
     border-bottom: 1px solid #808080;
     border-bottom-left-radius: 5px;
 }
-
-    }
 
 .fc-grid .fc-other-month .fc-day-number {
     opacity: 0.3;
