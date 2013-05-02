@@ -26,24 +26,17 @@
     </script>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
-<header class="navbar navbar-fixed-top">
-    <nav class="navbar-inner">
-        <div class="container">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
             <%= render 'layouts/navigation' %>
         </div>
-    </nav>
-</header>
-<div id="main" role="main">
-    <div class='container-fluid'>
-        <div class='row-fluid'>
+
+        <div role="main" class="span9">
             <%= render 'layouts/messages' %>
             <%= yield %>
-            <footer>
-            </footer>
         </div>
     </div>
-    <!--! end of .container -->
 </div>
-<!--! end of #main -->
 </body>
 </html>
