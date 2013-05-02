@@ -19,3 +19,4 @@ pickle-email-*.html
 Gemfile.lock
 .idea/
 out
+*.iml
