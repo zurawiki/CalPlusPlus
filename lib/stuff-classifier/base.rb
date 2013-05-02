@@ -127,21 +127,21 @@ class StuffClassifier::Base
 
   # train the classifier
   def train(category, text)
-    logger.warn "Training event of text #{text} \n into category #{category}"
+    puts "Training event of text #{text} \n into category #{category}"
     @tokenizer.each_word(text) { |w| increase_word(w, category) }
     increase_category(category)
-    logger.warn "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
+    puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
   # classify a text
   def classify(text, default=nil)
-    logger.warn "Classifying event of text #{text}"
+    puts "Classifying event of text #{text}"
     # Find the category with the highest probability
     max_prob = @min_prob
     best = nil
 
     scores = category_scores(text)
-    logger.warn "Category scores are: #{scores}"
+    puts "Category scores are: #{scores}"
     scores.each do |score|
       cat, prob = score
       if prob > max_prob
