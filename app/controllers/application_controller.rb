@@ -13,4 +13,6 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => 'sessions', :action => 'destroy', :notice => "You must be logged in view this page"
     end
   end
+
+  #TODO get classifier method
 end

@@ -1,11 +1,7 @@
 class ImportController < ApplicationController
 
   def list
-    #Use the token from the data to request a list of calendars
-    @token = session[:user_token]
-    client = Google::APIClient.new
-    client.authorization.access_token = @token
-    service = client.discovered_api('calendar', 'v3')
+    client = ImportHelper.initialize_api_client
     @result = client.execute(
         :api_method => service.calendar_list.list,
         :parameters => {},
@@ -15,18 +11,8 @@ class ImportController < ApplicationController
   end
 
   def calendar
-    calendar = params[:id] #Use the token from the data to request a list of calendars
-    @token = session[:user_token]
-    client = Google::APIClient.new
-    client.authorization.access_token = @token
-    service = client.discovered_api('calendar', 'v3')
-    @result = client.execute(
-        :api_method => service.events.list,
-        :parameters => {'calendarId' => calendar, 'singleEvents' => 'true'},
-        :headers => {'Content-Type' => 'application/json'}
-    )
+    events = ImportHelper.get_google_calendar_events
 
-    events = @result.data.items
     color = "#"+ ("%06x" % (rand * 0xffffff))
 
     events.each do |event|
@@ -55,6 +41,30 @@ class ImportController < ApplicationController
         )
       end
     end
-    redirect_to root_url, :notice => "Successfully imported Calendar: "+@result.data.summary
+    redirect_to root_url, :notice => "Successfully imported Calendar: #{@result.data.summary}"
+
+    def train
+      category = params[:category]
+      classifier = MyClassifer.new "Important"
+
+      events = ImportHelper.get_google_calendar_events
+
+      events.each do |event|
+        item = Event.create(
+            :allDay => true,
+            :start => Date.parse(event.start.date),
+            :end => (Date.parse(event.end.date)-1),
+            :title => event.summary,
+            :color => color,
+            :importance => 0,
+            :autoImportance => true,
+            :user_id => @user.id
+        )
+        classifier.train category, item
+      end
+
+      redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"
+
+    end
   end
 end
