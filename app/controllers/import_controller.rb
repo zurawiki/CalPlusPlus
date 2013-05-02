@@ -25,7 +25,8 @@ class ImportController < ApplicationController
             :color => color,
             :importance => 0,
             :autoImportance => true,
-            :user_id => @user.id
+            :user_id => @user.id,
+            :location => event.location
         )
       rescue
         logger.warn "Found an all day event"
@@ -37,7 +38,8 @@ class ImportController < ApplicationController
             :color => color,
             :importance => 0,
             :autoImportance => true,
-            :user_id => @user.id
+            :user_id => @user.id,
+            :location => event.location
         )
       end
     end
