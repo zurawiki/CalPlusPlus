@@ -83,7 +83,6 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     end
     p result
 
-
   end
 
 end
