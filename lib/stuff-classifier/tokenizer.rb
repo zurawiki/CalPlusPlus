@@ -11,21 +11,21 @@ class StuffClassifier::Tokenizer
     #split title, lemmatize words, and add to return list
     words = (event.title).split
     words.each do |word|
-      features += lem.lemma(word.downcase)
+      features += [lem.lemma(word.downcase)]
     end
     #tokenize locations
     loc = event.location
     if loc.empty?
       loc = "no_loc"
     end
-    features += "loc:#{loc}"
+    features += ["loc:#{loc}"]
 
     #tokenize times
     start_time = event.start
-    features += "start_t:#{start_time}"
+    features += ["start_t:#{start_time}"]
 
     end_time = event.end
-    features += "start_t:#{end_time}"
+    features += ["start_t:#{end_time}"]
   end
 
 
