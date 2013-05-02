@@ -36,24 +36,24 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     (@weight * @assumed_probability + totals * basic_probability) / (@weight + totals)
   end
 
-  def doc_probability(text, category)
-    @tokenizer.each_word(text).map { |w|
+  def doc_probability(event, category)
+    @tokenizer.tokenize(event).map { |w|
       word_weighted_average(w, category)
     }.inject(1) { |p, c| p * c }
   end
 
-  def text_probability(text, category)
+  def event_probability(event, category)
     category_probability = category_count(category) / total_category_count
-    doc_probability = doc_probability(text, category)
+    doc_probability = doc_probability(event, category)
     category_probability * doc_probability
   end
 
-  def category_scores(text)
-    probabilitys = {}
+  def category_scores(event)
+    probabilities = {}
     categories.each do |cat|
-      probabilitys[cat] = text_probability(text, cat)
+      probabilities[cat] = event_probability(event, cat)
     end
-    probabilitys.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
+    probabilities.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
   end
 
 
@@ -79,7 +79,7 @@ class StuffClassifier::Bayes < StuffClassifier::Base
 
     p "text_probability"
     result=categories.inject({}) do |h, cat|
-      h[cat]=text_probability(word, cat); h
+      h[cat]=event_probability(word, cat); h
     end
     p result
 

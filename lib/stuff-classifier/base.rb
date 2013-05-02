@@ -49,7 +49,7 @@ class StuffClassifier::Base
 
 
     @ignore_words = nil
-    @tokenizer = StuffClassifier::Tokenizer.new(opts)
+    @tokenizer = StuffClassifier::Tokenizer.new()
 
   end
 
@@ -126,18 +126,18 @@ class StuffClassifier::Base
   end
 
   # train the classifier
-  def train(category, text)
-    @tokenizer.each_word(text) { |w| increase_word(w, category) }
+  def train(category, event)
+    @tokenizer.tokenize(event) { |w| increase_word(w, category) }
     increase_category(category)
   end
 
-  # classify a text
-  def classify(text, default=nil)
+  # classify an event
+  def classify(event, default=nil)
     # Find the category with the highest probability
     max_prob = @min_prob
     best = nil
 
-    scores = category_scores(text)
+    scores = category_scores(event)
     scores.each do |score|
       cat, prob = score
       if prob > max_prob
@@ -163,6 +163,7 @@ class StuffClassifier::Base
     end
 
     best
+    logger.warn ""
   end
 
   def save_state
