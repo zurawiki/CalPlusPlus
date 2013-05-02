@@ -19,6 +19,7 @@ gem 'omniauth-google-oauth2'
 gem 'nifty-generators'
 gem 'google-api-client', '>= 0.5.0', :require => 'google/api_client'
 gem 'thin'
+gem 'lemmatizer'
 
 group :test do
   gem 'minitest-reporters'

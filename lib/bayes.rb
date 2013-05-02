@@ -1,3 +1,5 @@
+require "lemmatizer"
+
 class MyClassifer
   attr_reader :name
   attr_reader :word_list
@@ -74,7 +76,8 @@ class MyClassifer
   end
 
   def tokenize(string)
-    string.split
+    lem = Lemmatizer.new
+    lem.lemma(string)
   end
 
   def train(category, text)
