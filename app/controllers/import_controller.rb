@@ -13,38 +13,11 @@ class ImportController < ApplicationController
 
   def calendar
     events = get_calendar_events
-    color = "#"+ ("%06x" % (rand * 0xffffff))
 
     events.each do |event|
-      puts @classifier
-      importance = @classifier.classify event.summary || 0
-      begin
-        Event.create!(
-            :allDay => false,
-            :start => event.start.dateTime,
-            :end => event.end.dateTime,
-            :title => event.summary,
-            :color => color,
-            :importance => importance,
-            :autoImportance => true,
-            :user_id => @user.id,
-            :location => event.location
-        )
-      rescue
-        logger.warn "Found an all day event"
-        Event.create!(
-            :allDay => true,
-            :start => Date.parse(event.start.date),
-            :end => (Date.parse(event.end.date)-1),
-            :title => event.summary,
-            :color => color,
-            :importance => importance,
-            :autoImportance => true,
-            :user_id => @user.id,
-            :location => event.location
-        )
-
-      end
+      item = google_event_to_model event
+      item.importance = @classifier.classify event
+      item.save!
     end
     redirect_to root_url, :notice => "Successfully imported Calendar: #{@result.data.summary}"
   end
@@ -52,21 +25,10 @@ class ImportController < ApplicationController
   def train
     category = params[:category]
     events = get_calendar_events
-    color = '#fff'
-
 
     events.each do |event|
-      item = Event.create(
-          :allDay => true,
-          :start => Date.parse(event.start.date),
-          :end => (Date.parse(event.end.date)-1),
-          :title => event.summary,
-          :color => color,
-          :importance => 0,
-          :autoImportance => true,
-          :user_id => @user.id
-      )
-      @classifier.train category, item.title
+      item = google_event_to_model event
+      @classifier.train category, item
     end
 
     redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"
@@ -79,6 +41,41 @@ class ImportController < ApplicationController
     @client = Google::APIClient.new
     @client.authorization.access_token = @token
     @service = @client.discovered_api('calendar', 'v3')
+  end
+
+  protected
+  def google_event_to_model (event)
+    color = '#000'
+    begin
+      item = Event.new(
+          :allDay => false,
+          :start => event.start.dateTime,
+          :end => event.end.dateTime,
+          :title => event.summary,
+          :color => color,
+          :importance => 0,
+          :autoImportance => true,
+          :user_id => @user.id,
+          :location => ''
+      )
+    rescue => e
+      logger.error "Caught exception: #{e}"
+      logger.info 'Found an all day event'
+      item = Event.create(
+          :allDay => true,
+          :start => Date.parse(event.start.date),
+          :end => (Date.parse(event.end.date)-1),
+          :title => event.summary,
+          :color => color,
+          :importance => 0,
+          :autoImportance => true,
+          :user_id => @user.id,
+          :location => ''
+      )
+    end
+    item.location = event.location unless event.location.nil?
+
+    item
   end
 
   private
