@@ -21,6 +21,7 @@ gem 'google-api-client', '>= 0.5.0', :require => 'google/api_client'
 gem 'thin'
 gem 'lemmatizer'
 gem 'ruby-stemmer', '>=0.8.3', :require => 'lingua/stemmer'
+gem 'debugger'
 
 group :test do
   gem 'minitest-reporters'

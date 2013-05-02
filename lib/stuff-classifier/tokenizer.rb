@@ -14,11 +14,9 @@ class StuffClassifier::Tokenizer
       features += [lem.lemma(word.downcase)]
     end
     #tokenize locations
-    loc = event.location
-    if loc.empty?
-      loc = "no_loc"
-    end
-    features += ["loc:#{loc}"]
+    location = (event.location.nil?) ? 'none' : event.location
+
+    features += ["location:#{location}"]
 
     #tokenize times
     start_time = event.start
