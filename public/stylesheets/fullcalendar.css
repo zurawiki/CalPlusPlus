@@ -7,29 +7,32 @@
  *
  * Date: Tue Sep 4 23:38:33 2012 -0700
  *
- */
+
 
 .container-fluid {
         width: 85% !important;
         float:right;
         right:5px;
         padding: 0 0px 0 0px !important;
-}
+}*/
 #calendar {
-	min-width: 580px;
+    min-width: 580px;
     float: right;
-    margin-right:20px !important;
+    margin-right: 20px !important;
     width: 100% !important;
-	background-repeat: no-repeat;
-	background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
+
 #sidefoot {
-	position: center;
+    position: center;
 }
 
 .nav {
-    margin:0 !important;
+    margin: 0 !important;
 }
+
+/*
 #sidebar{
 	color:white;
 	text-align: left;
@@ -48,11 +51,11 @@
 #sidebar li a{
 	color:white;
 }
-
+*/
 body {
-	margin: 0 0 0 0 !important;
-	background-image:url('/images/noisy_grid.png');
-	background-repeat: repeat;
+    margin: 0 0 0 0 !important;
+    background-image: url('/images/noisy_grid.png');
+    background-repeat: repeat;
 }
 
 .fc {
@@ -98,11 +101,11 @@ html .fc,
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.fc-header h2 {
+/*.fc-header h2 {
 	font-size: 3em;
 	color:#424242;
 	margin: 0 0 0 0;
-	}
+}*/
 
 .fc-header-left {
     width: 25%;
@@ -123,10 +126,10 @@ html .fc,
 
 .fc-header-title {
 
-	color:white;
-	display: inline-block;
-	vertical-align: top;
-	}
+    color: white;
+    display: inline-block;
+    vertical-align: top;
+}
 
 .fc-header-title h2 {
     margin-top: 0;
@@ -176,19 +179,18 @@ html .fc,
 ------------------------------------------------------------------------*/
 
 .fc-content {
-	width:100% !important;
+    width: 100% !important;
     clear: both;
     margin: 0 20px 8px 20px;
 }
 
 .fc-view {
 
-	width: 100%; /* needed for view switching (when view is absolute) */
-	background-color: rgba(254,253,245,0.75);  /* 50% transparent */	
-	box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
-	overflow: hidden;
-	}
-
+    width: 100%; /* needed for view switching (when view is absolute) */
+    background-color: rgba(254, 253, 245, 0.75); /* 50% transparent */
+    box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+    overflow: hidden;
+}
 
 /* Cell Styles
 ------------------------------------------------------------------------*/
@@ -209,7 +211,7 @@ html .fc,
     /* semi-transparent rectangle while dragging */
     background: #9cf;
     opacity: .2;
-    filter: alpha(opacity = 20); /* for IE */
+    filter: alpha(opacity=20); /* for IE */
 }
 
 /* Buttons
@@ -283,7 +285,7 @@ html .fc,
     border-color: #fff;
     background: #444;
     opacity: .09;
-    filter: alpha(opacity = 9);
+    filter: alpha(opacity=9);
 }
 
 /* button states (determines colors)  */
@@ -360,30 +362,31 @@ a.fc-event {
 }
 
 .fc-event-inner {
-	background-color:transparent !important;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border-style: solid;
-	border-width: 0;
-	overflow: hidden;
-	}
-	
+    background-color: transparent !important;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-style: solid;
+    border-width: 0;
+    overflow: hidden;
+}
+
 .fc-event-time,
 .fc-event-title {
-	text-overflow: ellipsis !important;
-	padding: 0 1px;
-	}
-	
-.fc .ui-resizable-handle { /*** TODO: don't use ui-resizable anymore, change class ***/
-	display: block;
-	width: 0px;
-	position: absolute;
-	z-index: 99999;
-	overflow: hidden; /* hacky spaces (IE6/7) */
-	font-size: 300%;  /* */
-	line-height: 50%; /* */
-	}
+    text-overflow: ellipsis !important;
+    padding: 0 1px;
+}
+
+.fc .ui-resizable-handle {
+    /*** TODO: don't use ui-resizable anymore, change class ***/
+    display: block;
+    width: 0px;
+    position: absolute;
+    z-index: 99999;
+    overflow: hidden; /* hacky spaces (IE6/7) */
+    font-size: 300%; /* */
+    line-height: 50%; /* */
+}
 
 .fc-unimportant {
     font-size: 0px;
@@ -426,9 +429,9 @@ a.fc-event {
 }
 
 .fc-event-hori .ui-resizable-handle {
-	width: 0px !important;
-	_padding-bottom: 14px; /* IE6 had 0 height */
-	}
+    width: 0px !important;
+    _padding-bottom: 14px; /* IE6 had 0 height */
+}
 
 /* Fake Rounded Corners (for buttons and events)
 ------------------------------------------------------------*/
@@ -517,30 +520,31 @@ table.fc-border-separate {
 /* Month View, Basic Week View, Basic Day View
 ------------------------------------------------------------------------*/
 .fc-content .fc-view-month tbody {
-	background-repeat: no-repeat;
+    background-repeat: no-repeat;
 }
+
 .fc-grid th {
     text-align: center;
 }
 
 .fc-grid .fc-day-number {
-	color: #424242;
-	float: right;
-	padding: 0 3px;
-	background-color: #fff;
-	opacity: 0.9;
-	margin-right: -1px;
-	border-left: 1px solid #808080;
-	border-right: 1px solid #808080;
-	border-bottom: 1px solid #808080;
-	border-bottom-left-radius: 5px;
+    color: #424242;
+    float: right;
+    padding: 0 3px;
+    background-color: #fff;
+    opacity: 0.9;
+    margin-right: -1px;
+    border-left: 1px solid #808080;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    border-bottom-left-radius: 5px;
 }
 
     }
 
 .fc-grid .fc-other-month .fc-day-number {
     opacity: 0.3;
-    filter: alpha(opacity = 30); /* for IE */
+    filter: alpha(opacity=30); /* for IE */
     /* opacity with small font can sometimes look too faded
         might want to set the 'color' property instead
         making day-numbers bold also fixes the problem */
@@ -663,13 +667,14 @@ table.fc-border-separate {
 
 .fc-event-vert .fc-event-head,
 .fc-event-vert .fc-event-content {
-	position: relative;
-		background-color: transparent !important;
+    position: relative;
+    background-color: transparent !important;
 
-	z-index: 2;
-	width: 100%;
-	overflow: hidden;
-	}
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
+}
+
 .fc-event-vert .fc-event-time {
     white-space: nowrap;
     font-size: 10px;
@@ -685,7 +690,7 @@ table.fc-border-separate {
     height: 100%;
     background: #fff;
     opacity: .3;
-    filter: alpha(opacity = 30);
+    filter: alpha(opacity=30);
 }
 
 .fc .ui-draggable-dragging .fc-event-bg, /* TODO: something nicer like .fc-opacity */
@@ -727,27 +732,27 @@ table.fc-border-separate {
 }
 
 .fc-plus {
-	/*color:red !important;*/
-	padding-left: 5px;
-	border-radius:10px !important; 
-    -moz-border-radius:10px !important;
-	border-width:1px !important;
-	padding-left: 5px; 
-	width:100%;
-	/*border-color:red;*/
-	background-color: transparent;
-	color: #fff;
-	}	
+    /*color:red !important;*/
+    padding-left: 5px;
+    border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border-width: 1px !important;
+    padding-left: 5px;
+    width: 100%;
+    /*border-color:red;*/
+    background-color: transparent;
+    color: #fff;
+}
 
 .fc-plusplus {
-	padding-left: 5px;
-	border-radius:10px !important; 
-    -moz-border-radius:10px !important;
-    -moz-transform:rotate(0deg) !important;
-	/*border-color: red !important;
-	background-color: red;*/
-	font-color:white !important;
-	color: #fff;
+    padding-left: 5px;
+    border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    -moz-transform: rotate(0deg) !important;
+    /*border-color: red !important;
+    background-color: red;*/
+    font-color: white !important;
+    color: #fff;
 }
 
 .fc-month-allday {
