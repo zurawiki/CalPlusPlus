@@ -1,8 +1,9 @@
+require 'bayes'
 require 'test_helper'
 
 class TestNaiveBayesClassification < TestBase
   before do
-    set_classifier MyClassifer.new("Importance")
+    set_classifier MyClassifer.new "Importance"
 
     train :important, "meet Sadik"
     train :not, "buy drink"
