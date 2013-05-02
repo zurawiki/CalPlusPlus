@@ -1,6 +1,13 @@
+require 'stuff-classifier'
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :authenticate
+  before_filter :authenticate, :get_classifier
+
+  def get_classifier
+    @classifier = StuffClassifier::Bayes.new "Important"
+
+  end
 
   private
   def authenticate

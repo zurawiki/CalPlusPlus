@@ -73,6 +73,7 @@
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.2.13, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.0.4, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.12.2, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby-stemmer (v0.9.3, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.2.8, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v3.2.6, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="signet (v0.4.5, RVM: ruby-1.9.3-p392 [global]) [gem]" level="application" />
