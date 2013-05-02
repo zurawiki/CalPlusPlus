@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209000002) do
+ActiveRecord::Schema.define(:version => 20130502000002) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20121209000002) do
     t.decimal  "importance"
     t.boolean  "autoImportance"
     t.integer  "user_id"
+    t.string   "location"
     t.boolean  "allDay"
     t.datetime "start"
     t.datetime "end"

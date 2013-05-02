@@ -43,6 +43,7 @@ class ImportController < ApplicationController
             :user_id => @user.id,
             :location => event.location
         )
+
       end
     end
     redirect_to root_url, :notice => "Successfully imported Calendar: #{@result.data.summary}"
@@ -53,33 +54,18 @@ class ImportController < ApplicationController
     events = get_calendar_events
     color = '#fff'
 
+
     events.each do |event|
-      begin
-        item = Event.create(
-            :allDay => false,
-            :start => event.start.dateTime,
-            :end => event.end.dateTime,
-            :title => event.summary,
-            :color => color,
-            :importance => 0,
-            :autoImportance => true,
-            :user_id => @user.id,
-            :location => event.location
-        )
-      rescue
-        logger.warn "Found an all day event"
-        item = Event.create(
-            :allDay => true,
-            :start => Date.parse(event.start.date),
-            :end => (Date.parse(event.end.date)-1),
-            :title => event.summary,
-            :color => color,
-            :importance => 0,
-            :autoImportance => true,
-            :user_id => @user.id,
-            :location => event.location
-        )
-      end
+      item = Event.create(
+          :allDay => true,
+          :start => Date.parse(event.start.date),
+          :end => (Date.parse(event.end.date)-1),
+          :title => event.summary,
+          :color => color,
+          :importance => 0,
+          :autoImportance => true,
+          :user_id => @user.id
+      )
       @classifier.train category, item.title
     end
 
