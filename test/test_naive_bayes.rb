@@ -12,6 +12,10 @@ class TestNaiveBayesClassification < TestBase
     train :not, "browse facebook"
   end
 
+  def test_cache
+    assert Rails.cache.delete("Importance")
+  end
+
   def test_important
     should_be :important, "meet Chad"
     should_be :important, "dinner with Dev"

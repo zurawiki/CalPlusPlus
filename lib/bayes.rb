@@ -2,9 +2,13 @@ class MyClassifer
   attr_accessor :word_list
   attr_accessor :category_list
 
-  def initialize(name)
-    if (Rails.cache.read(name) != nil)
-      self = Rails.cache.read(name)
+  def initialize(name, options = nil)
+    @name = name
+    options ||= {}
+
+    if !options[:purge] && (Rails.cache.read @name) != nil
+      print "Loaded from Cache"
+      Rails.cache.read @name
     else
       @word_list = {}
       @category_list = {}
@@ -66,6 +70,7 @@ class MyClassifer
   def train(category, text)
     tokenize(text).each { |w| add_word(w, category) }
     add_category(category)
+    Rails.cache.write(@name, YAML::dumps)
   end
 
   def word_prob(word, category)
