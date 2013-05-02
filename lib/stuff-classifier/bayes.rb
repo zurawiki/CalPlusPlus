@@ -21,7 +21,6 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     word_count(word, category).to_f / total_words_in_category
   end
 
-
   def word_weighted_average(word, category, opts={})
     func = opts[:func]
 
@@ -55,7 +54,6 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     end
     probabilities.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
   end
-
 
   def word_classification_detail(word)
 
