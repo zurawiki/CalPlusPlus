@@ -127,10 +127,9 @@ class StuffClassifier::Base
 
   # train the classifier
   def train(category, event)
-    puts "Training event of text #{event} \n into category #{category}"
+    puts "Training event into category #{category}"
     @tokenizer.tokenize(event) { |w| increase_word(w, category) }
     increase_category(category)
-    puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
   # classify a text

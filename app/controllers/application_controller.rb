@@ -5,8 +5,13 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :get_classifier
 
   def get_classifier
-    @classifier = StuffClassifier::Bayes.new "Important"
+    @storage_path = "/tmp/calplusplus_classifier.db"
+    @storage = StuffClassifier::FileStorage.new(@storage_path)
+    StuffClassifier::Base.storage = @storage
 
+    StuffClassifier::Base.storage = StuffClassifier::FileStorage.new(@storage_path)
+
+    @classifier = StuffClassifier::Bayes.open('Importance')
   end
 
   private
