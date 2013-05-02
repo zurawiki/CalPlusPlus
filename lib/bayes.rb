@@ -1,11 +1,17 @@
 class MyClassifer
-  attr_accessor :word_list
-  attr_accessor :category_list
+  attr_reader :name
+  attr_reader :word_list
+  attr_reader :category_list
+  attr_reader :training_count
+  attr_accessor :weight
+  attr_accessor :assumed_prob
+  attr_accessor :thresholds
+  attr_accessor :min_prob
 
-  def initialize(name, options = nil)
+
+  def initialize(name, opts={})
+
     @name = name
-    options ||= {}
-
     if !options[:purge] && (Rails.cache.read @name) != nil
       print "Loaded from Cache"
       Rails.cache.read @name
@@ -13,6 +19,10 @@ class MyClassifer
       @word_list = {}
       @category_list = {}
       @training_count = 0
+      @weight = opts[:weight] || 1.0
+      @assumed_prob = opts[:assumed_prob] || 0.1
+      @thresholds = opts[:thresholds] || {}
+      @min_prob = opts[:min_prob] || 0.0
     end
   end
 
@@ -50,7 +60,7 @@ class MyClassifer
     @word_list[word][:total_word].to_f
   end
 
-  def total_word_count_in_cat(category)
+  def total_word_count_in_category(category)
     return 0.0 unless @category_list[category] && @category_list[category][:total_word]
     @category_list[category][:total_word].to_f
   end
@@ -73,8 +83,8 @@ class MyClassifer
     Rails.cache.write(@name, YAML::dumps)
   end
 
-  def word_prob(word, category)
-    total_word_in_cat = total_word_count_in_cat(category)
+  def word_probability(word, category)
+    total_word_in_cat = total_word_count_in_category(category)
     return 0.0 if total_word_in_cat == 0
     word_count(word, category).to_f / total_word_in_cat
   end
@@ -82,14 +92,14 @@ class MyClassifer
   def word_weighted_average(word, category)
 
     # calculate current probability
-    basic_prob = word_prob(word, category)
+    basic_prob = word_probability(word, category)
 
     # count the number of times this word has appeared in all
     # categories
     totals = total_word_count(word)
 
     # the final weighted average
-    (1 * 0.1 + totals * basic_prob) / (1 + totals)
+    (@weight * @assumed_prob + totals * basic_prob) / (@weight + totals)
   end
 
   def document_probability(text, category)
@@ -100,7 +110,7 @@ class MyClassifer
     end
   end
 
-  def text_prob(text, category)
+  def text_probability(text, category)
     cat_prob = category_count(category) / total_category_count
     doc_prob = document_probability(text, category)
     cat_prob * doc_prob
@@ -111,11 +121,11 @@ class MyClassifer
   end
 
   def category_scores(text)
-    probs = {}
+    probabilities = {}
     categories.each do |cat|
-      probs[cat] = text_prob(text, cat)
+      probabilities[cat] = text_probability(text, cat)
     end
-    probs.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
+    probabilities.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
   end
 
   def classify(text)
@@ -130,6 +140,23 @@ class MyClassifer
         best = cat
       end
     end
+
+    # Return the default category in case the threshold condition was
+    # not met. For example, if the threshold for :spam is 1.2
+    #
+    #    :spam => 0.73, :ham => 0.40  (OK)
+    #    :spam => 0.80, :ham => 0.70  (Fail, :ham is too close)
+
+    return default unless best
+
+    threshold = @thresholds[best] || 1.0
+
+    scores.each do |score|
+      cat, prob = score
+      next if cat == best
+      return default if prob * threshold > max_prob
+    end
+
     best
   end
 
