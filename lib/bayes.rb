@@ -1,10 +1,16 @@
 class MyClassifer
+
   attr_reader :name
   attr_reader :word_list
   attr_reader :category_list
   attr_reader :training_count
+
+  #weight & assumed_prob are used to smooth the result, used in word_weighted_average
+
   attr_accessor :weight
   attr_accessor :assumed_prob
+
+  #thresholds are used to check ambiguous estimates.
   attr_accessor :thresholds
   attr_accessor :min_prob
 
@@ -12,6 +18,8 @@ class MyClassifer
   def initialize(name, opts={})
 
     @name = name
+
+    #we load from cached classifier if there is a cache. Initialize with parameters otherwise
     if !options[:purge] && (Rails.cache.read @name) != nil
       print "Loaded from Cache"
       Rails.cache.read @name
@@ -26,6 +34,7 @@ class MyClassifer
     end
   end
 
+  #each given word is mapped to the specified category, increasing both word_list and category_list
   def add_word(word, category)
     @word_list[word] ||= {}
 
@@ -41,6 +50,7 @@ class MyClassifer
     @category_list[category][:total_word] += 1
   end
 
+  #create a new category
   def add_category(category)
     @category_list[category] ||= {}
     @category_list[category][:count] ||= 0
@@ -77,6 +87,7 @@ class MyClassifer
     string.split
   end
 
+  #train the classifier with a text and corresponding category
   def train(category, text)
     tokenize(text).each { |w| add_word(w, category) }
     add_category(category)
@@ -89,6 +100,7 @@ class MyClassifer
     word_count(word, category).to_f / total_word_in_cat
   end
 
+  #perform the bayes formula calculation, the result is smoothed by weight and assumed_probability
   def word_weighted_average(word, category)
 
     # calculate current probability
