@@ -1,9 +1,9 @@
-require 'bayes'
+require 'stuff-classifier'
 require 'test_helper'
 
 class TestNaiveBayesClassification < TestBase
   before do
-    set_classifier MyClassifer.new "Importance"
+    set_classifier StuffClassifier::Bayes.new "Importance"
 
     train :important, "meet Sadik"
     train :not, "buy drink"
@@ -11,10 +11,6 @@ class TestNaiveBayesClassification < TestBase
     train :not, "go walk"
     train :important, "do math homework"
     train :not, "browse facebook"
-  end
-
-  def test_cache
-    assert Rails.cache.delete("Importance")
   end
 
   def test_important
@@ -25,7 +21,7 @@ class TestNaiveBayesClassification < TestBase
 
   def test_not_important
     should_be :not, "look at facebook"
-    should_be :not, "go to CVS"
+    should_be :not, "go browse drinks"
   end
 
   def test_ambiguous
