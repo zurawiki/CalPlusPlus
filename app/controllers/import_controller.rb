@@ -29,6 +29,15 @@ class ImportController < ApplicationController
     events.each do |event|
       item = google_event_to_model event
       @classifier.train category, item
+
+      item.autoImportance = false
+      if category == 'important' then
+        item.importance = 1
+      else
+        item.importance = 0
+      end
+      item.save!
+
     end
 
     redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"
