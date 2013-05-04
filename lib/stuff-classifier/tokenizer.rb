@@ -16,14 +16,14 @@ class StuffClassifier::Tokenizer
     #tokenize locations
     location = (event.location.nil?) ? 'none' : event.location
 
-    features += ["location:#{location}"]
+    features += ["location #{location}"]
 
     #tokenize times
     start_time = event.start
-    features += ["start_t:#{start_time}"]
+    features += ["start_t #{start_time}"]
 
     end_time = event.end
-    features += ["start_t:#{end_time}"]
+    features += ["start_t #{end_time}"]
   end
 
 
