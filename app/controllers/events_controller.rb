@@ -44,4 +44,26 @@ class EventsController < ApplicationController
     event.destroy
     render :json => event
   end
+
+  def edit
+    event = Event.find(params[:id])
+    event.update_attributes!(
+    :allDay => params[:allDay],
+    :start => params[:start],
+    :end => params[:end],
+    :title => params[:title],
+    :color => params[:color],
+    :importance => params[:importance],
+    :user_id => params[:user_id],
+    :location => params[:location]
+    )
+    if params[:importance] == 1.
+      event.update_attributes!(
+      :autoImportance => false
+    )
+    end
+  end
+
+
+
 end
