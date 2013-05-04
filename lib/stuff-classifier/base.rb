@@ -137,15 +137,15 @@ class StuffClassifier::Base
   def classify(event, default=nil)
     puts "Classifying event of text #{event}"
     # Find the category with the highest probability
-    max_prob = @min_prob
+    maximum_probability = @min_prob
     best = nil
 
     scores = category_scores(event)
     puts "Category scores are: #{scores}"
     scores.each do |score|
       cat, prob = score
-      if prob > max_prob
-        max_prob = prob
+      if prob > maximum_probability
+        maximum_probability = prob
         best = cat
       end
     end
@@ -158,15 +158,26 @@ class StuffClassifier::Base
 
     return default unless best
 
-    threshold = @thresholds[best] || 1.0
+    threshold = @thresholds[best] || 1.2
 
     scores.each do |score|
       cat, prob = score
       next if cat == best
-      return default if prob * threshold > max_prob
+      return default if prob * threshold > maximum_probability
     end
 
     best
+  end
+
+  def return_classified_probablity(event)
+    result = classify(event)
+    if result == :important then
+      1
+    elsif result == :not then
+      0
+    else
+      0.5
+    end
   end
 
   def save_state
