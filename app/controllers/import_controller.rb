@@ -31,14 +31,13 @@ class ImportController < ApplicationController
       @classifier.train category, item
 
       item.autoImportance = false
-      if category == 'important' then
-        item.importance = 1
-      else
-        item.importance = 0
-      end
+      item.importance = (category == 'important') ? 1 : 0
       item.save!
 
     end
+
+    # write new classifier to file
+    @classifier.save_state
 
     redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"
 
