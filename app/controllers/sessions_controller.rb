@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     else
       logger.debug "params: #{params.inspect}"
     end
-    redirect_to root_url, :notice => "You have successfully logged in!"
+    redirect_to root_url, :notice => 'You have successfully logged in!'
   end
 
   def create
@@ -18,17 +18,17 @@ class SessionsController < ApplicationController
     auth = Authorization.find_or_create(@auth)
     # Create the session
     session[:user_id] = auth.user.id
-    session[:user_token] = @auth["credentials"]["token"]
+    session[:user_token] = @auth['credentials']['token']
   end
 
   def failure
-    redirect_to root_url, :alert => "There was an error authentication with Google. Please try again."
+    redirect_to root_url, :alert => 'There was an error authentication with Google. Please try again.'
   end
 
   def destroy
     session[:user_id] = nil
     session[:user_token] = nil
 
-    redirect_to root_url, :notice => "You are now logged out!"
+    redirect_to root_url, :notice => 'You are now logged out!'
   end
 end
