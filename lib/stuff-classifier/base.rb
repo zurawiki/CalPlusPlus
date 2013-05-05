@@ -34,7 +34,7 @@ class StuffClassifier::Base
     @category_list = {}
     @training_count=0
 
-    # storage
+    # Classifier storage options
     purge_state = opts[:purge_state]
     @storage = opts[:storage] || StuffClassifier::Base.storage
     unless purge_state
@@ -47,12 +47,14 @@ class StuffClassifier::Base
     @thresholds = opts[:thresholds] || {}
     @min_prob = opts[:min_prob] || 0.0
 
-
     @ignore_words = nil
-    @tokenizer = StuffClassifier::Tokenizer.new()
 
+    # Initialize the tokenizer.
+    @tokenizer = StuffClassifier::Tokenizer.new()
   end
 
+  # Takes in a training word (token) and update the current record.
+  # A new dictionary is created in the word frist appear.
   def increase_word(word, category)
     @word_list[word] ||= {}
 
@@ -71,6 +73,7 @@ class StuffClassifier::Base
 
   end
 
+  # Add a new category
   def increase_category(category)
     @category_list[category] ||= {}
     @category_list[category][:_count] ||= 0
@@ -81,51 +84,51 @@ class StuffClassifier::Base
 
   end
 
-  # return number of times the word appears in a category
+  # Return number of times the word appears in a category
   def word_count(word, category)
     return 0.0 unless @word_list[word] && @word_list[word][:categories] && @word_list[word][:categories][category]
     @word_list[word][:categories][category].to_f
   end
 
-  # return the number of times the word appears in all categories
+  # Return the number of times the word appears in all categories
   def total_word_count(word)
     return 0.0 unless @word_list[word] && @word_list[word][:_total_word]
     @word_list[word][:_total_word].to_f
   end
 
-  # return the number of words in a categories
+  # Return the number of words in a categories
   def total_word_count_in_category(category)
     return 0.0 unless @category_list[category] && @category_list[category][:_total_word]
     @category_list[category][:_total_word].to_f
   end
 
-  # return the number of training item 
+  # Return the number of training item 
   def total_category_count
     @training_count
   end
 
-  # return the number of training document for a category
+  # Return the number of training document for a category
   def category_count(category)
     @category_list[category][:_count] ? @category_list[category][:_count].to_f : 0.0
   end
 
-  # return the number of time categories in which a word appear
+  # Return the number of time categories in which a word appear
   def categories_with_word_count(word)
     return 0 unless @word_list[word] && @word_list[word][:categories]
     @word_list[word][:categories].length
   end
 
-  # return the number of categories
+  # Return the number of categories
   def total_categories
     categories.length
   end
 
-  # return categories list
+  # Return categories list
   def categories
     @category_list.keys
   end
 
-  # train the classifier
+  # Train the classifier. The event and it's category are required
   def train(category, event)
     puts "Training event of text #{event} \n into category #{category}" if Rails.env.development?
     @tokenizer.tokenize(event).each { |w| increase_word(w, category) }
@@ -133,8 +136,9 @@ class StuffClassifier::Base
     puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
-  # classify a text
-
+  # Since were calculating relative probablity in category_scores, we turn them into normalized
+  # probablity (0~1, possibilities sum upto 1) for better human-readibility. 
+  # e.g. :spam => 0.0002, :ham => 0.0003 is converted into :spam => 0.4, :ham => 0.6
   def normalized_probablities(event)
     scores = category_scores(event)
 
@@ -154,6 +158,7 @@ class StuffClassifier::Base
     scores
   end
 
+  # Classify an event. Takes in additional argument as defualt result in case of ambiguity.
   def classify(event, default=nil)
     puts "Classifying event: #{event}" if Rails.env.development?
 
@@ -179,6 +184,7 @@ class StuffClassifier::Base
 
     return default unless best
 
+    # The default value of threshold is arbitrarily set to 1.2 
     threshold = @thresholds[best] || 1.2
 
     scores.each do |score|
