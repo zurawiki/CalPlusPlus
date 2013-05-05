@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate, :get_classifier
 
+  private
   def get_classifier
     @storage_path = Rails.root.join('tmp').join('importance_classifier.db')
     @storage = StuffClassifier::FileStorage.new(@storage_path)
@@ -22,6 +23,4 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => 'sessions', :action => 'destroy', :notice => 'You must be logged in view this page'
     end
   end
-
-  #TODO get classifier method
 end

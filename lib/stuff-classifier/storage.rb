@@ -88,4 +88,5 @@ module StuffClassifier
     end
 
   end
+
 end

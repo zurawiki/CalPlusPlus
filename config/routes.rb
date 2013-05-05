@@ -14,6 +14,8 @@ CalPlusPlus::Application.routes.draw do
   get '/import/list'
   get '/import/calendar'
   get '/import/train'
+  get '/import/open'
+  get '/import/save'
 
   resources :events
 
