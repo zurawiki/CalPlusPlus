@@ -13,33 +13,34 @@
 
 ActiveRecord::Schema.define(:version => 20130502000002) do
 
-  create_table 'authorizations', :force => true do |t|
-    t.string 'provider'
-    t.string 'uid'
-    t.integer 'user_id'
-    t.datetime 'created_at', :null => false
-    t.datetime 'updated_at', :null => false
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  create_table 'events', :force => true do |t|
-    t.string 'title'
-    t.string 'color'
-    t.decimal 'importance'
-    t.boolean 'autoImportance'
-    t.integer 'user_id'
-    t.string 'location'
-    t.boolean 'allDay'
-    t.datetime 'start'
-    t.datetime 'end'
-    t.datetime 'created_at', :null => false
-    t.datetime 'updated_at', :null => false
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.string   "color"
+    t.decimal  "importance"
+    t.boolean  "autoImportance"
+    t.integer  "user_id"
+    t.string   "location"
+    t.boolean  "allDay"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "description"
   end
 
-  create_table 'users', :force => true do |t|
-    t.string 'name'
-    t.string 'email'
-    t.datetime 'created_at', :null => false
-    t.datetime 'updated_at', :null => false
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

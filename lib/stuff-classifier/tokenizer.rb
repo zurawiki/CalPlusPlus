@@ -7,7 +7,7 @@ class Time
   end
 
   def round_to_hour
-    self.floor(1.hour)
+      self.floor(1.hour)
   end
 end
 
@@ -39,23 +39,25 @@ Possible Features
     tokens = Array.new
 
     #Call method responsible for tokenizing a certain feature, append to
-    features.each { |feature|
-      if @possible_features.include feature
-        tokens += send(feature, event)
-      end
+    possible_features = [:title, :description, :start_time, :end_time, :weekday, :location]
+    features.each {|feature|
+    if possible_features.include? feature
+      tokens += send(feature, event)
+    end
     }
+    tokens
   end
 
-  def summary(event)
+  def title(event)
     #splits summary on spaces : " ' | \ /
     #remove ?! or count as importance? ...
 
     #prepare lemmatizer
     lemmatizer = Lemmatizer.new
     #assumes title is non-optional from GCal
-    words = event.summary.split(/[\s.:"';\[\]\/-]+/)
-    words.map { |word|
-      lemmatizer.lemma(word).downcase
+    words = event.title.split(/[\s.:"';\[\]\/-]+/)
+    words.map {|word|
+    lemmatizer.lemma(word).downcase
     }
   end
 
@@ -67,7 +69,7 @@ Possible Features
     #remove ? , . ;
     description_string = (event.description.nil?) ? 'none' : event.description
     words = description_string.split(/[\s.:"';\[\]\/-]+/)
-    words.map { |word|
+    words.map {|word|
       lemmatizer.lemma(word.downcase)
     }
   end
@@ -75,17 +77,17 @@ Possible Features
   def start_time(event)
     #bins to hour blocks
     start_time = event.start.dateTime.to_time.round_to_hour
-    'start_time ' + start_time.to_datetime.strftime('%R')
+    "start_time " + start_time.to_datetime.strftime("%R")
   end
 
   def end_time(event)
     #bins to hour blocks
     end_time = event.end.dateTime.to_time.round_to_hour
-    'end_time ' + end_time.to_datetime.strftime('%R')
+    "end_time " + end_time.to_datetime.strftime("%R")
   end
 
   def weekday(event)
-    'weekday' + event.start.dateTime.strftime('%^a')
+    "weekday" + event.start.dateTime.strftime("%^a")
   end
 
   def location(event)
