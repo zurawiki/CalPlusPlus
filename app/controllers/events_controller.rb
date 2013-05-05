@@ -9,33 +9,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    render :json =>
-               Event.create!(
-                   :allDay => params[:allDay],
-                   :start => params[:start],
-                   :end => params[:end],
-                   :title => params[:title],
-                   :color => params[:color],
-                   :importance => params[:importance],
-                   :autoImportance => params[:autoImportance],
-                   :user_id => params[:user_id],
-                   :location => params[:location]
-               )
+    render :json => Event.create!(extract_event params)
   end
 
   def update
     event = Event.find(params[:id])
-    event.update_attributes!(
-        :allDay => params[:allDay],
-        :start => params[:start],
-        :end => params[:end],
-        :title => params[:title],
-        :color => params[:color],
-        :importance => params[:importance],
-        :autoImportance => params[:autoImportance],
-        :user_id => params[:user_id],
-        :location => params[:location]
-    )
+    event.update_attributes!(extract_event params)
     render :json => event
   end
 
@@ -48,22 +27,37 @@ class EventsController < ApplicationController
   def edit
     event = Event.find(params[:id])
     event.update_attributes!(
-    :allDay => params[:allDay],
-    :start => params[:start],
-    :end => params[:end],
-    :title => params[:title],
-    :color => params[:color],
-    :importance => params[:importance],
-    :user_id => params[:user_id],
-    :location => params[:location]
+        :allDay => params[:allDay],
+        :start => params[:start],
+        :end => params[:end],
+        :title => params[:title],
+        :color => params[:color],
+        :importance => params[:importance],
+        :user_id => params[:user_id],
+        :location => params[:location]
     )
     if params[:importance] == 1.
-      event.update_attributes!(
-      :autoImportance => false
+        event.update_attributes!(
+        :autoImportance => false
     )
     end
   end
 
+  private
+  def extract_event (params)
+    {
+        allDay: params[:allDay],
+        start: params[:start],
+        end: params[:end],
+        title: params[:title],
+        color: params[:color],
+        importance: params[:importance],
+        autoImportance: params[:autoImportance],
+        user_id: params[:user_id],
+        location: params[:location]
+    }
+
+  end
 
 
 end

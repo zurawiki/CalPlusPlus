@@ -31,13 +31,13 @@ class StuffClassifier::TfIdf < StuffClassifier::Base
 
   def word_classification_detail(word)
 
-    p "tf_idf"
+    p 'tf_idf'
     result=self.categories.inject({}) do |h, cat|
       h[cat]=self.word_prob(word, cat); h
     end
     ap result
 
-    p "text_prob"
+    p 'text_prob'
     result=categories.inject({}) do |h, cat|
       h[cat]=text_prob(word, cat); h
     end

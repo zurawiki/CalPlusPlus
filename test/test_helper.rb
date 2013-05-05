@@ -4,9 +4,9 @@ require 'turn'
 require 'simplecov'
 SimpleCov.start
 
-ENV["RAILS_ENV"] = "test"
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
-require "rails/test_help"
+require 'rails/test_help'
 
 MiniTest::Unit.runner = MiniTest::ReporterRunner.new
 MiniTest::Unit.runner.reporters << MiniTest::Reporters.use!

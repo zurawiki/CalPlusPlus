@@ -7,6 +7,7 @@ class CreateEvents < ActiveRecord::Migration
       t.boolean :autoImportance
       t.integer :user_id
       t.string :location
+      t.string :description
 
       t.boolean :allDay
       t.datetime :start

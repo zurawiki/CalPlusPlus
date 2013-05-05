@@ -43,9 +43,9 @@ class StuffClassifier::Bayes < StuffClassifier::Base
   # Tokenize the event, calculate weighted probablity for each token in the given category 
   # and multiply them together.
   def doc_probability(event, category)
-    @tokenizer.tokenize(event).map { |w|
+    @tokenizer.tokenize(event, [:title, :description, :start_time, :end_time, :weekday, :location] ).map { |w|
       word_weighted_average(w, category)
-    }.inject(1) { |probability, category| probability * category }
+    }.inject(1) { |p, c| p * c }
   end
 
   # Finalize the event's probability by multiplying the doc_probablity 
@@ -61,10 +61,10 @@ class StuffClassifier::Bayes < StuffClassifier::Base
   # To reduce running time, the probablilities are not normalized.
   def category_scores(event)
     probabilities = {}
-    categories.each do |category|
-      probabilities[category] = event_probability(event, category)
+    categories.each do |cat|
+      probabilities[cat] = event_probability(event, cat)
     end
-    probabilities.map { |key, value| [key, value] }.sort { |a, b| b[1] <=> a[1] }
+    probabilities.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
   end
 
 

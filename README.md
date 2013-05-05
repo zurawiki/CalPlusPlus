@@ -1,41 +1,49 @@
-Cal++
-=====
+#Cal++#
 
 Calendars done right.
 
-Built using Ruby on Rails, Omniauth, Google API, Backbone, FullCalendar, and QTip.
+Built using Ruby on Rails, Omniauth and the Google Calendar API.
+Front end made possible by Backbone.js, FullCalendar, and QTip.
 
-Copyright (c) 2012, Zurawicki, Scharfstein, and Ho
+Copyright (c) 2013, Zurawicki, Chang, and Liu.
+CS51 2013 Final Project
 
+##Installing the Server:##
 
-License from example app:
+Install Ruby 1.9.3 with Rails 3.2, preferably with RVM.
+Homebrew on Mac is great for this.
 
-Omniauth + Rails example application
-==================================
+In a terminal, open this directory
 
+###Install:###
 
-How to Install
-==============
+    bundle install
 
-Install Ruby 1.9.3 with Rails 3.2
+To install all Ruby and Rails dependencies
 
-Install IntelliJ IDEA 12 and install the Ruby and Rails plugin
+###Migrate:###
 
-Open the project in the git root
+    bundle exec rake db:setup
 
-Run
-    bundler install
-    db:migrate
+will create, migrate, and populate the databases
 
-Run server in development mode
+###Test:###
 
-License
--------
+    bundle exec rake test
 
-Copyright (c) 2011 Jamie Wilkinson
+Will run the tests
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+##Running the Server:##
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    bundle exec rails server
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+To run the server. The server can be reached at:
+<http://localhost:3000/>
+
+###Training the Classifier:###
+
+You can use the seed data provided to train the classifier.
+
+    bundle exec rake cal:train
+
+Log in using your Gooogle Account and import your google calendars to see them classified.

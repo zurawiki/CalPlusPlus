@@ -130,12 +130,13 @@ class StuffClassifier::Base
 
   # Train the classifier. The event and it's category are required
   def train(category, event)
-    puts "Training event of text #{event} \n into category #{category}" if Rails.env.development?
-    @tokenizer.tokenize(event).each { |w| increase_word(w, category) }
+    puts "Training event of text #{event} \n into category #{category}"
+    @tokenizer.tokenize(event, [:title, :description, :start_time, :end_time, :weekday, :location]).each { |w| increase_word(w, category) }
     increase_category(category)
     puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
+<<<<<<< HEAD
   # Since were calculating relative probablity in category_scores, we turn them into normalized
   # probablity (0~1, possibilities sum upto 1) for better human-readibility. 
   # e.g. :spam => 0.0002, :ham => 0.0003 is converted into :spam => 0.4, :ham => 0.6
@@ -159,20 +160,22 @@ class StuffClassifier::Base
   end
 
   # Classify an event. Takes in additional argument as defualt result in case of ambiguity.
+=======
+  # classify a text
+>>>>>>> 1327c0666abc5c686e61df18d7d7c56b63150103
   def classify(event, default=nil)
-    puts "Classifying event: #{event}" if Rails.env.development?
-
+    puts "Classifying event of text #{event}"
     # Find the category with the highest probability
-    maximum_probability = @min_prob
+    max_prob = @min_prob
     best = nil
 
     scores = category_scores(event)
-    puts "Category scores are: #{scores}" if Rails.env.development?
+    puts "Category scores are: #{scores}"
     scores.each do |score|
-      category, probability = score
-      if probability > maximum_probability
-        maximum_probability = probability
-        best = category
+      cat, prob = score
+      if prob > max_prob
+        max_prob = prob
+        best = cat
       end
     end
 
@@ -184,26 +187,20 @@ class StuffClassifier::Base
 
     return default unless best
 
+<<<<<<< HEAD
     # The default value of threshold is arbitrarily set to 1.2 
     threshold = @thresholds[best] || 1.2
+=======
+    threshold = @thresholds[best] || 1.0
+>>>>>>> 1327c0666abc5c686e61df18d7d7c56b63150103
 
     scores.each do |score|
-      category, probability = score
-      next if category == best
-      return nil if probability * threshold > maximum_probability
+      cat, prob = score
+      next if cat == best
+      return default if prob * threshold > max_prob
     end
 
     best
-  end
-
-  def category_probability (category,event)
-    scores = normalized_probablities(event)
-
-    scores.each do |score|
-      thiscategory, probability = score
-      return probability if thiscategory == category    
-    end
-    nil
   end
 
   def save_state

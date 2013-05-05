@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       @user_token = session[:user_token]
     else
       # redirect to login
-      redirect_to :controller => 'sessions', :action => 'destroy', :notice => "You must be logged in view this page"
+      redirect_to :controller => 'sessions', :action => 'destroy', :notice => 'You must be logged in view this page'
     end
   end
 

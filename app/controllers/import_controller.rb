@@ -31,13 +31,14 @@ class ImportController < ApplicationController
       @classifier.train category, item
 
       item.autoImportance = false
-      item.importance = (category == 'important') ? 1 : 0
+      if category == 'important' then
+        item.importance = 1
+      else
+        item.importance = 0
+      end
       item.save!
 
     end
-
-    # write new classifier to file
-    @classifier.save_state
 
     redirect_to root_url, :notice => "Successfully trained Calendar: #{@result.data.summary} as type #{category}"
 
@@ -64,7 +65,8 @@ class ImportController < ApplicationController
           :importance => 0,
           :autoImportance => true,
           :user_id => @user.id,
-          :location => ''
+          :location => '',
+          :description => event.description
       )
     rescue => e
       logger.error "Caught exception: #{e}"
@@ -78,7 +80,8 @@ class ImportController < ApplicationController
           :importance => 0,
           :autoImportance => true,
           :user_id => @user.id,
-          :location => ''
+          :location => '',
+          :description => event.description
       )
     end
     item.location = event.location unless event.location.nil?
