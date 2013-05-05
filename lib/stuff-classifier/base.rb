@@ -38,10 +38,10 @@ class StuffClassifier::Base
     # Classifier storage options
     purge_state = opts[:purge_state]
     @storage = opts[:storage] || StuffClassifier::Base.storage
-    unless purge_state
-      @storage.load_state(self)
-    else
+    if purge_state
       @storage.purge_state(self)
+    else
+      @storage.load_state(self)
     end
 
     # This value can be set during initialization or overrided after load_state
@@ -132,10 +132,9 @@ class StuffClassifier::Base
 
   # Train the classifier. The event and it's category are required
   def train(category, event)
-    puts "Training event of text #{event} \n into category #{category}"
+    puts "Training event #{event}  into category #{category}"
     @tokenizer.tokenize(event, @features).each { |w| increase_word(w, category) }
     increase_category(category)
-    puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
   # Since were calculating relative probablity in category_scores, we turn them into normalized
