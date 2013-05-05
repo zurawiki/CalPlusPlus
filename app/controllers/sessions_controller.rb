@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
   def new
     if session[:user_id]
       # our user is logged in
-      logger.debug "USER VALIDATED! GOING TO CALENDAR!"
+      logger.debug 'USER VALIDATED! GOING TO CALENDAR!'
     else
       logger.debug "params: #{params.inspect}"
     end
-    redirect_to "/home"
+    redirect_to root_url, :notice => "You have successfully logged in!"
   end
 
   def create
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
-    redirect_to root_url, :notice => "There was an error authentication with Google. Please try again."
+    redirect_to root_url, :alert => "There was an error authentication with Google. Please try again."
   end
 
   def destroy
