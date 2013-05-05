@@ -45,9 +45,18 @@ class StuffClassifier::Tokenizer
 
     # Split strings by defining delimiters as any combination of:
     #   : " ' ; [ ] / - _ (whitespace) ! ? ,
-    words = string.split(/[\s.:"';\[\]\/-_!?,]+/)
+    words = string.split(/[\s.:"';\[\]\/\-_!?,]+/)
     words.map { |word|
-      lemmatizer.lemma(word)
+      # Handle proper nouns - we are aware that is is not ubiquitous in coverage
+      # e.g. if user enters "james" - will still be lemmatized to "jam"
+      case_analysis_string = word.dup
+      if case_analysis_string.upcase! == nil
+        lemmatizer.lemma(word.downcase)
+      elsif word[0].upcase! == nil
+        lemmatizer.lemma(word)
+      else
+        lemmatizer.lemma(word.downcase)
+      end
     }
   end
 
