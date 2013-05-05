@@ -200,6 +200,8 @@ class StuffClassifier::Base
       return default if prob * threshold > max_prob
     end
 
+    puts self
+
     best
   end
 
