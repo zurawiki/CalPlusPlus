@@ -1,5 +1,9 @@
 # encoding: utf-8
 
+
+# Naive Bayesian classifier. Implemented using the basic bayesian probablity model
+# Perfect for single dimension classification. This is also the basis for multinomial classification.
+
 class StuffClassifier::Bayes < StuffClassifier::Base
   attr_accessor :weight
   attr_accessor :assumed_probability

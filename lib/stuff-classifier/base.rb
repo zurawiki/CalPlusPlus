@@ -1,5 +1,8 @@
 # encoding: utf-8
 
+
+# Basic Logic for classifiers. This is the parent class for both Bayes classifier and Multinomial classifier.
+
 class StuffClassifier::Base
   extend StuffClassifier::Storage::ActAsStorable
   attr_reader :name
@@ -49,6 +52,9 @@ class StuffClassifier::Base
     @min_prob = opts[:min_prob] || 0.0
 
     @ignore_words = nil
+
+    # Features are used to determine which property of the event we are considering
+    # Designed this way to  implement multinomial classifiaction later
     @features = opts[:features] || [:title]
 
     # Initialize the tokenizer.
