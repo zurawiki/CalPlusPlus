@@ -127,26 +127,48 @@ class StuffClassifier::Base
 
   # train the classifier
   def train(category, event)
-    puts "Training event of text #{event} \n into category #{category}"
+    puts "Training event of title #{event[:title]} \n into category #{category}"
     @tokenizer.tokenize(event).each { |w| increase_word(w, category) }
     increase_category(category)
     puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
   # classify a text
+
+  def normalized_probablities(event)
+    scores = category_scores(event)
+
+    sum_probability = 0
+
+    scores.each do |score|
+      category, probability = score
+      sum_probability = sum_probability + probability
+    end
+
+    scores.map! do |score|
+      category, probability = score
+      probability = probability / sum_probability
+      score = category, probability
+    end
+
+    scores
+  end
+
   def classify(event, default=nil)
-    puts "Classifying event of text #{event}"
+    puts "Classifying event of title #{event[:title]}"
     # Find the category with the highest probability
     maximum_probability = @min_prob
     best = nil
 
-    scores = category_scores(event)
+    scores = normalized_probablities(event)
+
     puts "Category scores are: #{scores}"
+    
     scores.each do |score|
-      cat, prob = score
-      if prob > maximum_probability
-        maximum_probability = prob
-        best = cat
+      category, probability = score
+      if probability > maximum_probability
+        maximum_probability = probability
+        best = category
       end
     end
 
@@ -161,23 +183,22 @@ class StuffClassifier::Base
     threshold = @thresholds[best] || 1.2
 
     scores.each do |score|
-      cat, prob = score
-      next if cat == best
-      return default if prob * threshold > maximum_probability
+      category, probability = score
+      next if category == best
+      return nil if probability * threshold > maximum_probability
     end
 
     best
   end
 
-  def return_classified_probablity(event)
-    result = classify(event)
-    if result == :important then
-      1
-    elsif result == :not then
-      0
-    else
-      0.5
+  def category_probability (category,event)
+    scores = normalized_probablities(event)
+
+    scores.each do |score|
+      thiscategory, probability = score
+      return probability if thiscategory == category    
     end
+    nil
   end
 
   def save_state
