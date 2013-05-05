@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(:version => 20130502000002) do
     t.boolean  "autoImportance"
     t.integer  "user_id"
     t.string   "location"
+    t.string   "description"
     t.boolean  "allDay"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "description"
   end
 
   create_table "users", :force => true do |t|

@@ -52,7 +52,7 @@ Possible Features
     #prepare lemmatizer
     lemmatizer = Lemmatizer.new
     #assumes title is non-optional from GCal
-    words = event.title.split(/[\s.:"';\[\]\/-]+/)
+    words = event.title.split(/[\s.:"';\[\]\/-_]+/)
     words.map { |word|
       lemmatizer.lemma(word).downcase
     }
@@ -65,7 +65,7 @@ Possible Features
     #splits title on spaces : " ' | \ /
     #remove ? , . ;
     description_string = (event.description.nil?) ? 'none' : event.description
-    words = description_string.split(/[\s.:"';\[\]\/-]+/)
+    words = description_string.split(/[\s.:"';\[\]\/-_]+/)
     words.map { |word|
       lemmatizer.lemma(word.downcase)
     }

@@ -15,6 +15,7 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     super(name, opts)
     @weight = opts[:weight] || 1.0
     @assumed_probability = opts[:assumed_probability] || 0.1
+
   end
 
   # Return the probability of a word's appearence in a given category
@@ -43,7 +44,7 @@ class StuffClassifier::Bayes < StuffClassifier::Base
   # Tokenize the event, calculate weighted probablity for each token in the given category 
   # and multiply them together.
   def doc_probability(event, category)
-    @tokenizer.tokenize(event, [:title, :description, :start_time, :end_time, :weekday, :location] ).map { |w|
+    @tokenizer.tokenize(event, @features).map { |w|
       word_weighted_average(w, category)
     }.inject(1) { |p, c| p * c }
   end
@@ -64,7 +65,7 @@ class StuffClassifier::Bayes < StuffClassifier::Base
     categories.each do |cat|
       probabilities[cat] = event_probability(event, cat)
     end
-    probabilities.map { |k, v| [k, v] }.sort { |a, b| b[1] <=> a[1] }
+    probabilities.map { |k, v| [k, v] }
   end
 
 

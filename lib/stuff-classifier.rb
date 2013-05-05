@@ -11,5 +11,6 @@ module StuffClassifier
   autoload :Base, 'stuff-classifier/base'
   autoload :Bayes, 'stuff-classifier/bayes'
   autoload :TfIdf, 'stuff-classifier/tf-idf'
+  autoload :Multi, 'stuff-classifier/multi'
 
 end

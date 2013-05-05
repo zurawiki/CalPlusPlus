@@ -12,6 +12,7 @@ class StuffClassifier::Base
 
   attr_accessor :thresholds
   attr_accessor :min_prob
+  attr_accessor :features
 
 
   storable :version, :word_list, :category_list, :training_count, :thresholds, :min_prob
@@ -48,6 +49,7 @@ class StuffClassifier::Base
     @min_prob = opts[:min_prob] || 0.0
 
     @ignore_words = nil
+    @features = opts[:features] || [:title]
 
     # Initialize the tokenizer.
     @tokenizer = StuffClassifier::Tokenizer.new()
@@ -131,12 +133,11 @@ class StuffClassifier::Base
   # Train the classifier. The event and it's category are required
   def train(category, event)
     puts "Training event of text #{event} \n into category #{category}"
-    @tokenizer.tokenize(event, [:title, :description, :start_time, :end_time, :weekday, :location]).each { |w| increase_word(w, category) }
+    @tokenizer.tokenize(event, @features).each { |w| increase_word(w, category) }
     increase_category(category)
     puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
   end
 
-<<<<<<< HEAD
   # Since were calculating relative probablity in category_scores, we turn them into normalized
   # probablity (0~1, possibilities sum upto 1) for better human-readibility. 
   # e.g. :spam => 0.0002, :ham => 0.0003 is converted into :spam => 0.4, :ham => 0.6
@@ -160,9 +161,6 @@ class StuffClassifier::Base
   end
 
   # Classify an event. Takes in additional argument as defualt result in case of ambiguity.
-=======
-  # classify a text
->>>>>>> 1327c0666abc5c686e61df18d7d7c56b63150103
   def classify(event, default=nil)
     puts "Classifying event of text #{event}"
     # Find the category with the highest probability
@@ -187,12 +185,8 @@ class StuffClassifier::Base
 
     return default unless best
 
-<<<<<<< HEAD
     # The default value of threshold is arbitrarily set to 1.2 
     threshold = @thresholds[best] || 1.2
-=======
-    threshold = @thresholds[best] || 1.0
->>>>>>> 1327c0666abc5c686e61df18d7d7c56b63150103
 
     scores.each do |score|
       cat, prob = score
