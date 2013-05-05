@@ -7,7 +7,7 @@ class Time
   end
 
   def round_to_hour
-      self.floor(1.hour)
+    self.floor(1.hour)
   end
 end
 
@@ -28,9 +28,6 @@ Possible Features
 
 =end
 
-  @possible_features = [:summary, :description, :time, :weekday, :location]
-
-
   def tokenize(event, features)
     if features.empty?
       raise ArgumentError, 'No features specified'
@@ -40,10 +37,10 @@ Possible Features
 
     #Call method responsible for tokenizing a certain feature, append to
     possible_features = [:title, :description, :start_time, :end_time, :weekday, :location]
-    features.each {|feature|
-    if possible_features.include? feature
-      tokens += send(feature, event)
-    end
+    features.each { |feature|
+      if possible_features.include? feature
+        tokens += send(feature, event)
+      end
     }
     tokens
   end
@@ -56,8 +53,8 @@ Possible Features
     lemmatizer = Lemmatizer.new
     #assumes title is non-optional from GCal
     words = event.title.split(/[\s.:"';\[\]\/-]+/)
-    words.map {|word|
-    lemmatizer.lemma(word).downcase
+    words.map { |word|
+      lemmatizer.lemma(word).downcase
     }
   end
 
@@ -69,30 +66,30 @@ Possible Features
     #remove ? , . ;
     description_string = (event.description.nil?) ? 'none' : event.description
     words = description_string.split(/[\s.:"';\[\]\/-]+/)
-    words.map {|word|
+    words.map { |word|
       lemmatizer.lemma(word.downcase)
     }
   end
 
   def start_time(event)
     #bins to hour blocks
-    start_time = event.start.dateTime.to_time.round_to_hour
-    "start_time " + start_time.to_datetime.strftime("%R")
+    start_time = event.start
+    ["start_time " + start_time.strftime("%H")]
   end
 
   def end_time(event)
     #bins to hour blocks
-    end_time = event.end.dateTime.to_time.round_to_hour
-    "end_time " + end_time.to_datetime.strftime("%R")
+    end_time = event.end
+    ["end_time " + end_time.strftime("%H")]
   end
 
   def weekday(event)
-    "weekday" + event.start.dateTime.strftime("%^a")
+    ["weekday " + event.start.strftime("%^a")]
   end
 
   def location(event)
-    location = (event.location.nil?) ? 'none' : event.location
-    "location #{location}"
+    location = (event.location.empty?) ? 'none' : event.location
+    ["location #{location}"]
   end
 
   #TODO:def exclamation_question(event)
