@@ -127,7 +127,7 @@ class StuffClassifier::Base
 
   # train the classifier
   def train(category, event)
-    puts "Training event of title #{event[:title]} \n into category #{category}"
+    puts "Training event of text #{event} \n into category #{category}" if Rails.env.development?
     @tokenizer.tokenize(event).each { |w| increase_word(w, category) }
     increase_category(category)
     puts "words_in_cat|cat_doc_count\n#{total_word_count(category)}|#{category_count(category)}"
@@ -155,15 +155,14 @@ class StuffClassifier::Base
   end
 
   def classify(event, default=nil)
-    puts "Classifying event of title #{event[:title]}"
+    puts "Classifying event: #{event}" if Rails.env.development?
+
     # Find the category with the highest probability
     maximum_probability = @min_prob
     best = nil
 
-    scores = normalized_probablities(event)
-
-    puts "Category scores are: #{scores}"
-    
+    scores = category_scores(event)
+    puts "Category scores are: #{scores}" if Rails.env.development?
     scores.each do |score|
       category, probability = score
       if probability > maximum_probability
