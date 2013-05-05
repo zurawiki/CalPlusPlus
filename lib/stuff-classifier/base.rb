@@ -186,6 +186,7 @@ class StuffClassifier::Base
     return default unless best
 
     # The default value of threshold is arbitrarily set to 1.2 
+
     threshold = @thresholds[best] || 1.2
 
     scores.each do |score|

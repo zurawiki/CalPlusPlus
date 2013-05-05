@@ -1,7 +1,5 @@
 <div class="jumbotron masthead">
-
     <div class="container">
-
         <p>Select a Calendar to Import</p>
     </div>
 </div>
@@ -12,6 +10,7 @@
         <th><h3>Calendar Name</h3></th>
         <th><h6>Import</h6></th>
         <th><h6>Train</h6></th>
+        <th><h6>Save</h6></th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +28,7 @@
                 </form>
             </td>
             <td>
+                <!-- TODO fix action urls using the rails framework -->
                 <form action="/import/train" method="get">
                     <input type="submit" class="btn btn-danger btn-mini" value="Important"/>
                     <input type="hidden" name="id" value="<%= cal.id %>"/>
@@ -40,6 +40,13 @@
                     <input type="hidden" name="id" value="<%= cal.id %>"/>
                     <input type="hidden" name="category" value="not"/>
 
+                </form>
+            </td>
+            <td>
+                <form action="/import/save" method="get">
+                    <input type="text" name="filename" value=""/>
+                    <input type="submit" class="btn btn-success" value="Save to File"/>
+                    <input type="hidden" name="id" value="<%= cal.id %>"/>
                 </form>
             </td>
         </tr>

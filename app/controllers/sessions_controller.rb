@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
     # Create the session
     session[:user_id] = auth.user.id
     session[:user_token] = @auth['credentials']['token']
+
+    redirect_to root_url, :notice => 'You have successfully logged in!'
   end
 
   def failure
