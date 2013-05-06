@@ -29,8 +29,6 @@ class StuffClassifier::Base
   # purge_state ?
 
   def initialize(name, opts={})
-    @version = StuffClassifier::VERSION
-
     @name = name
 
     # This values are nil or are loaded from storage

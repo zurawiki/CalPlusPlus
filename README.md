@@ -56,7 +56,10 @@ Note that Cal++ runs best on Google Chrome and WebKit-based browsers such as Saf
 
 You can use the seed data provided to train the classifier.
 
-    bundle exec rake cal:train
+    bundle exec rake train
+
+
+Ignore any output
 
 ## Usage Reference ##
 This section is a tutorial of how to use the web app. The work that went into the frontend was a CS50 project and this

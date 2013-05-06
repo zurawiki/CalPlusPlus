@@ -10,4 +10,10 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
+Rake::TestTask.new(:train) do
+  FileUtils.cp Rails.root.join('db').join('trained_classifier.db'),
+               Rails.root.join('tmp').join('importance_classifier.db')
+end
+
 task :default => :test
+task :default => :train
